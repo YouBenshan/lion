@@ -1,6 +1,7 @@
 package com.cj.replyer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,9 +18,12 @@ import com.cj.domain.sent.Article;
 import com.cj.domain.sent.NewsSentContent;
 import com.cj.domain.sent.SentContent;
 import com.cj.utils.PropertiesUtil;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Table;
 
 public class NewsPropertiesReplyer implements Replyer{
-	private final int MAX_ITEM=10;
+	private final int ARTICLE_MAX_SIZE=10;
 	private final String TITLE="title";
 	private final String DESCRIPTION="description";
 	private final String PIC_URL="picUrl";
@@ -44,42 +48,30 @@ public class NewsPropertiesReplyer implements Replyer{
 			for(String keyword:keywords){
 				map.put(keyword, sentContent);
 			}
-			List<Article> articles=new ArrayList<Article>();
+			properties.remove("keywords");
+			
+			List<Article> articles=new ArrayList<Article>(ARTICLE_MAX_SIZE);
 			sentContent.setArticles(articles);
+			
+			Table< Integer,String, String> articleTable=HashBasedTable.create();
+			
 			for(Entry<Object, Object> e: properties.entrySet()){
-				String[] titles=new String[MAX_ITEM];
-				String[] descriptions=new String[MAX_ITEM];
-				String[] picUrls=new String[MAX_ITEM];
-				String[] urls=new String[MAX_ITEM];
-				
 				String key=(String)e.getKey();
 				String[] keyArray=StringUtils.split(key, ".");
-				int index=0;
-				if(keyArray.length==2){
-					index=Integer.valueOf(keyArray[1]);
-				}
-				if(TITLE.equals(keyArray[0])){
-					titles[index]=(String)e.getValue();
-				}
-				else if(DESCRIPTION.equals(keyArray[0])){
-					descriptions[index]=(String)e.getValue();
-				}
-				else if(PIC_URL.equals(keyArray[0])){
-					picUrls[index]=(String)e.getValue();
-				}
-				else if(URL.equals(keyArray[0])){
-					urls[index]=(String)e.getValue();
-				}
-				for(int i=0;i<MAX_ITEM;i++){
-					if(StringUtils.isNotBlank(titles[i])){
-						Article article = new Article();
-						article.setTitle(titles[i]);
-						article.setDescription(descriptions[i]);
-						article.setPicUrl(picUrls[i]);
-						article.setUrl(urls[i]);
-						articles.add(article);
-					}
-				}
+				Integer row= Integer.valueOf(keyArray[0]);
+				String collow=keyArray[1];
+				String value = (String) e.getValue();
+				articleTable.put(row, collow, value);
+			}
+			List<Integer> order=Lists.newArrayList(articleTable.rowKeySet());
+			Collections.sort(order);
+			for(Integer row:articleTable.rowKeySet()){
+				Article article=new Article();
+				article.setTitle(articleTable.get(row, TITLE));
+				article.setDescription(articleTable.get(row, DESCRIPTION));
+				article.setPicUrl(articleTable.get(row, PIC_URL));
+				article.setUrl(articleTable.get(row, URL));
+				articles.add( article);
 			}
 		}
 	}
@@ -103,7 +95,7 @@ public class NewsPropertiesReplyer implements Replyer{
 		}
 		
 		
-		return map.get(incomingContent);
+		return newsSentContent;
 	}
 
 }
