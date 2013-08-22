@@ -5,3 +5,8 @@
 *.war
 *.ear
 /target
+/.project
+/.gitignore
+/.classpath
+/.settings
+/.externalToolBuilders
