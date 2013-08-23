@@ -37,7 +37,6 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	// @DependsOn("lifecycleBeanPostProcessor")
 	public static DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
 		return new DefaultAdvisorAutoProxyCreator();
 	}

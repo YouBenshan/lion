@@ -23,6 +23,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Table;
 
 public class NewsPropertiesReplyer implements Replyer{
+	private final String SEPERATOR="|";
 	private final int ARTICLE_MAX_SIZE=10;
 	private final String TITLE="title";
 	private final String DESCRIPTION="description";
@@ -43,7 +44,7 @@ public class NewsPropertiesReplyer implements Replyer{
 			propertiesSet.add(properties);
 		}
 		for(Properties properties:propertiesSet){
-			String[] keywords=StringUtils.split(properties.getProperty("keywords"), ",");
+			String[] keywords=StringUtils.split(properties.getProperty("keywords"), SEPERATOR);
 			NewsSentContent sentContent=new NewsSentContent();
 			for(String keyword:keywords){
 				map.put(keyword, sentContent);
@@ -57,7 +58,7 @@ public class NewsPropertiesReplyer implements Replyer{
 			
 			for(Entry<Object, Object> e: properties.entrySet()){
 				String key=(String)e.getKey();
-				String[] keyArray=StringUtils.split(key, ".");
+				String[] keyArray=StringUtils.split(key, SEPERATOR);
 				Integer row= Integer.valueOf(keyArray[0]);
 				String collow=keyArray[1];
 				String value = (String) e.getValue();
