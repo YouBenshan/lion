@@ -27,7 +27,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		super.addArgumentResolvers(argumentResolvers);
 		argumentResolvers.add(new PagingAndSortingMethodArgumentResolver());
 		argumentResolvers.add(new FilterMethodArgumentResolver());
-//		argumentResolvers.add(new ModelAttributeMethodProcessor(Boolean.FALSE));
 		
 	}
 

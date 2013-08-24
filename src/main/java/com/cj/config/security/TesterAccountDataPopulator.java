@@ -17,7 +17,7 @@ import com.cj.repository.security.AccountHelper;
 import com.cj.repository.security.RoleRepository;
 
 @Slf4j
-@Component
+//@Component
 public class TesterAccountDataPopulator implements
 		ApplicationListener<ContextRefreshedEvent> {
 	private boolean notExcuted = true;

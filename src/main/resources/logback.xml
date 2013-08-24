@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="30 seconds">
+<configuration>
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
@@ -9,16 +9,19 @@
     <jmxConfigurator/>
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%-5level %logger{0} - %msg%n</pattern>
-        </encoder>
     </appender>
+    
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>wechat.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>wechat.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+	    </rollingPolicy>
+  	</appender>
 
-	<!--<logger name="org.hibernate" level="debug"/> -->
     <logger name="com.cj" level="debug"/>
-    <logger name="org.springframework.web" level="debug"/>
          
     <root level="info">
         <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
     </root>
 </configuration>

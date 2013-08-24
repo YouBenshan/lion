@@ -19,7 +19,8 @@ public class DataRestAndSecurityFilterInitializer implements WebApplicationIniti
 		
 		DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy(
 				SecurityConfig.SHIRO_FILTER_NAME);
-		//servletContext.addFilter("dataRestFilter", delegatingFilterProxy).addMappingForUrlPatterns(null, false, "/*");
+		//enable shiro
+		servletContext.addFilter("shiroFilter", delegatingFilterProxy).addMappingForUrlPatterns(null, false, "/*");
 	}
 
 

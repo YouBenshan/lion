@@ -27,5 +27,4 @@ public class H2EmbeddedDatbaseConsoleInitializer implements
 		dynamic.addMapping("/h2/*");
 		dynamic.setLoadOnStartup(1);
 	}
-
 }
