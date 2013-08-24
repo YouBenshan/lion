@@ -11,6 +11,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cj.domain.received.ReceivedMessage;
 import com.cj.domain.received.TextReceivedMessage;
@@ -91,8 +92,8 @@ public class NewsPropertiesReplyer implements Replyer{
 		}
 		List<Article> articles=newsSentContent.getArticles();
 		for(Article article:articles){
-			String newUrl=article.getUrl()+"?wechatId="+receivedMessage.getOther();
-			article.setUrl(newUrl);
+			String url=UriComponentsBuilder.fromHttpUrl(article.getUrl()).queryParam("wechatId", receivedMessage.getOther()).build().toUriString();
+			article.setUrl(url);
 		}
 		
 		
