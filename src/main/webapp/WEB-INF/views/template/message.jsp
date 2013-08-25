@@ -5,28 +5,17 @@
 <label>最后收到的消息</label>
 <label>wechat id: {{lastMessages.content[0].other}}</label>
 <label>时间： {{lastMessages.content[0].createTime}}
-<form>
-	<fieldset>
-		<legend>设置查找条件</legend>
-		<label>wechat 账号:  <input type="text" name="EQ[other]"/></label>
-		<label>日期: <input type="date" name="createTime"/></label>
-		<button type="submit" class="btn">查找</button>
-	</fieldset>
-</form>
 
-<table class="table table-striped .table-bordered table-hover">
 <div class="pagination pagination-right">
   <ul>
-    <li><a ng-click="pageable.page=1;updateMessages()">Prev</a></li>
-    <li><a ng-click="pageable.page=1;updateMessages()">1</a></li>
-    <li><a ng-click="pageable.page=2;updateMessages()">2</a></li>
-    <li><a ng-click="pageable.page=3;updateMessages()">3</a></li>
-    <li><a ng-click="pageable.page=4;updateMessages()">4</a></li>
-    <li><a ng-click="pageable.page=5;updateMessages()">5</a></li>
-    <li><a ng-click="pageable.page=1;updateMessages()">Next</a></li>
+    <li ng-class="{disabled: current== 1}" ><a ng-click="updateMessages(current-1);">Prev</a></li>
+    <li ng-repeat="n in [] | pageRange:{'total':messages.page.totalPages,'current':current}" ng-class="{active: n+1 == current}">
+            <a ng-click="updateMessages(n+1);">{{n+1}}</a>
+    </li>
+    <li ng-class="{disabled: current== messages.page.totalPages}"><a ng-click="updateMessages(current+1);">Next</a></li>
   </ul>
 </div>
-{{pageable}}
+<table class="table table-striped .table-bordered table-hover">
 	<caption>接收到的信息</caption>
 	<thead>
 		<tr>
@@ -39,7 +28,20 @@
 		<tr ng-repeat="message in messages.content">
 			<td>{{message.createTime}}</td>
 			<td>{{message.other}}</td>
-			<td><a href="#/profile/account/edit/{{account.id}}">edit</a></td>
+			<td><a href="#detail" role="button" class="btn" data-toggle="modal" ng-click="modal.message=message">详细</a></td>
 		</tr>
 	</tbody>
 </table>
+
+<div id="detail" class="modal hide fade"aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>详细信息</h3>
+  </div>
+  <div class="modal-body">
+  	<p ng-bind="modal.message.content"></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
