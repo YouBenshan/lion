@@ -31,10 +31,11 @@ public class ReplyerConfig {
 	
 	@Bean
 	public SubscribeReplyer subscribeReplyer() {
-		SubscribeReplyer propertiesReplyer = new SubscribeReplyer();
+		SubscribeReplyer sbscribeReplyer = new SubscribeReplyer();
 		TextSentContent sentContent = new TextSentContent();
 		sentContent.setContent("Hello亲～我是小细～ Systema细齿洁是狮王旗下专业的牙龈护理品牌,为您带来最细致入微的关怀呵护。感谢您关注小细！小细会定期发送专属的免费试用、新品信息、促销活动及牙龈健康小贴士！回复“测试”，开启牙齿健康小诊断，了解你的牙齿问题！还有更多功能等你来发现！");
-		return propertiesReplyer;
+		sbscribeReplyer.setSentContent(sentContent);
+		return sbscribeReplyer;
 	}
 
 	@Bean

@@ -1,6 +1,8 @@
 package com.cj.config;
 
 
+
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -33,7 +35,8 @@ class MysqlDataSourceConfig {
 //	@Bean
 //	public DataSource dataSource(Environment env) {
 //		DataSource datasouce=new DataSource();
-//		datasouce.setDriverClassName(env.getProperty("jdbc.driver").trim());
+//		
+//		datasouce.setDriverClassName("com.mysql.jdbc.Driver");
 //		datasouce.setUrl(env.getProperty("jdbc.url").trim());
 //		datasouce.setUsername(env.getProperty("jdbc.username").trim());
 //		datasouce.setPassword(env.getProperty("jdbc.password").trim());
@@ -48,11 +51,11 @@ class MysqlDataSourceConfig {
 	
 	@Bean
 	  public DataSource dataSource(Environment env){
-		BasicDataSource ds = new org.apache.commons.dbcp.BasicDataSource();
-	    ds.setDriverClassName(env.getProperty("jdbc.driver").trim());
-	    ds.setUrl(env.getProperty("jdbc.url").trim());
-	    ds.setUsername(env.getProperty("jdbc.username").trim());
-	    ds.setPassword(env.getProperty("jdbc.password").trim());
-	    return ds;
+		BasicDataSource dataSource = new org.apache.commons.dbcp.BasicDataSource();
+		dataSource.setDriverClassName(env.getProperty("jdbc.driver").trim());
+		dataSource.setUrl(env.getProperty("jdbc.url").trim());
+		dataSource.setUsername(env.getProperty("jdbc.username").trim());
+		dataSource.setPassword(env.getProperty("jdbc.password").trim());
+	    return dataSource;
 	  }
 }
