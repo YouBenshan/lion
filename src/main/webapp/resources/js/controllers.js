@@ -5,7 +5,7 @@
 angular.module('controllers', ['messageServices','filters']).controller('MessageCtrl', function($scope, Messages) {
 	$scope.newFilter={};
 	$scope.filter={};
-	$scope.pageable={"page":1,"sort":"createTime","createTime.dir":"desc"};
+	$scope.pageable={"page":1,"sort":"id","id.dir":"desc"};
 	$scope.current=1;
 	$scope.modal={};
 	
@@ -19,6 +19,10 @@ angular.module('controllers', ['messageServices','filters']).controller('Message
 			$scope.current=i;
 			$scope.messages=Messages.get($scope.pageable);
 		}
+	};
+	
+	$scope.getDate=function(second){
+		return new Date(1000*second).toLocaleString();
 	};
 }).controller('UserCtrl', function($scope){
 	var merge = function(x,y){

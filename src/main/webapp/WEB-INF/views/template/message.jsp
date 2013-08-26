@@ -4,7 +4,7 @@
 <label>总共收到消息：{{lastMessages.page.totalElements}}</label>
 <label>最后收到的消息</label>
 <label>wechat id: {{lastMessages.content[0].other}}</label>
-<label>时间： {{lastMessages.content[0].createTime}}
+<label>时间： {{getDate(lastMessages.content[0].createTime)}}
 
 <div class="pagination pagination-right">
   <ul>
@@ -26,7 +26,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="message in messages.content">
-			<td>{{message.createTime}}</td>
+			<td>{{getDate(message.createTime)}}</td>
 			<td>{{message.other}}</td>
 			<td><a href="#detail" role="button" class="btn" data-toggle="modal" ng-click="modal.message=message">详细</a></td>
 		</tr>

@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<label>到现在为止，今天被关注的人数：</label>
+
 <form>
 	<fieldset>
 		<legend>设置查找条件</legend>
