@@ -24,26 +24,9 @@ angular.module('controllers', ['messageServices','filters']).controller('Message
 	$scope.getDate=function(second){
 		return new Date(1000*second).toLocaleString();
 	};
-}).controller('UserCtrl', function($scope){
-	var merge = function(x,y){
-		var r=x;
-		for (var key in y) {
-			r[key] = y[key];
-		}
-		return r;
-	};
-	
-
-	
-	$scope.find=function(){
-		 var frm = $(document.form);
-		 var data = JSON.stringify(frm.serializeArray());
-		alert(data);
-		$scope.pageable.page=1;
-		$scope.current=1;
-		$scope.filter=$scope.newFilter;
-		$scope.messages=Messages.save($scope.filter);
-	};
+}).controller('UserCtrl', function($scope,Subscribe,TopActive){
+	$scope.subscribeToday=Subscribe.get();
+	$scope.topActive=TopActive.get();
 });
  
 

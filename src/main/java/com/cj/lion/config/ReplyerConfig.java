@@ -54,7 +54,6 @@ public class ReplyerConfig {
 	@Bean
 	public ActivityReplyer activityReplyer() {
 		ActivityReplyer activityReplyer = new ActivityReplyer();
-		// set...
 		return activityReplyer;
 	}
 

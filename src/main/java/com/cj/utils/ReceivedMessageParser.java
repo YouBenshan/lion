@@ -29,7 +29,7 @@ public class ReceivedMessageParser {
 		case "text":
 			receivedMessage = new TextReceivedMessage();
 			TextReceivedMessage textreceivedMessage = (TextReceivedMessage) receivedMessage;
-			textreceivedMessage.setContent(XmlUtil.getText(doc, "Content"));
+			textreceivedMessage.setContent(XmlUtil.getText(doc, "Content").trim());
 			textreceivedMessage.setMsgId(Long.parseLong(XmlUtil.getText(doc,
 					"MsgId")));
 			break;

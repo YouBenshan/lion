@@ -8,5 +8,4 @@ import com.cj.domain.received.TextReceivedMessage;
 public interface TextReceivedMessageRepository extends
 		JpaRepository<TextReceivedMessage, Long>,
 		JpaSpecificationExecutor<TextReceivedMessage> {
-
 }

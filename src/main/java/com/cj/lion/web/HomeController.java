@@ -1,4 +1,4 @@
-package com.cj.lion.web.controller;
+package com.cj.lion.web;
 
 import lombok.extern.slf4j.Slf4j;
 

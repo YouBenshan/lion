@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@ComponentScan(basePackages = "com.cj.lion.web.controller")
+@ComponentScan(basePackages = "com.cj.lion.web")
 @EnableWebMvc
 public class LionWebMvcConfig {
 
