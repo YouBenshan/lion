@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.cj.config.AppProperties;
 import com.cj.domain.sent.TextSentContent;
-import com.cj.replyer.ActivityReplyer;
+import com.cj.lion.replyer.ActivityReplyer;
 import com.cj.replyer.LastReplyer;
 import com.cj.replyer.MessageSender;
 import com.cj.replyer.NewsPropertiesReplyer;
@@ -58,10 +58,14 @@ public class ReplyerConfig {
 	}
 
 	@Bean
-	public ReplyerChain replyerChain(ActivityReplyer activityReplyer,NewsPropertiesReplyer newsPropertiesReplyer,
+	public ReplyerChain replyerChain(NewsPropertiesReplyer newsPropertiesReplyer,
 			TextPropertiesReplyer textPropertiesReplyer,SubscribeReplyer subscribeReplyer, LastReplyer lastReplyer) {
 		ReplyerChain replyerChain = new ReplyerChain();
-		replyerChain.setActivityReplyer(activityReplyer);
+		
+		ActivityReplyer activityReplyer=new ActivityReplyer();
+		activityReplyer.setAppProperties(appProperties);
+		replyerChain.addCustomReplyer(activityReplyer);
+		
 		replyerChain.setNewsPropertiesReplyer(newsPropertiesReplyer);
 		replyerChain.setTextPropertiesReplyer(textPropertiesReplyer);
 		replyerChain.setSubscribeReplyer(subscribeReplyer);

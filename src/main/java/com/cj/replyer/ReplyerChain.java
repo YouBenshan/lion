@@ -1,5 +1,8 @@
 package com.cj.replyer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Setter;
 
 import com.cj.domain.received.ReceivedMessage;
@@ -11,17 +14,22 @@ public class ReplyerChain implements Replyer {
 	private SubscribeReplyer subscribeReplyer;
 	private TextPropertiesReplyer textPropertiesReplyer;
 	private NewsPropertiesReplyer newsPropertiesReplyer;
-	private ActivityReplyer activityReplyer;
+	
+	private final List<Replyer> customReplyers=new ArrayList<Replyer>();
+	public void addCustomReplyer(Replyer replyer){
+		customReplyers.add(replyer);
+	}
 
 	@Override
 	public SentContent reply(ReceivedMessage receivedMessage) {
 		SentContent sentContent=null;
-		if(activityReplyer!=null){
-			sentContent= activityReplyer.reply(receivedMessage);
+		for(Replyer replyer:customReplyers){
+			sentContent=replyer.reply(receivedMessage);
+			if(sentContent!=null){
+				return sentContent;
+			}
 		}
-		if (sentContent != null) {
-			return sentContent;
-		}
+
 		if(newsPropertiesReplyer!=null){
 			sentContent= newsPropertiesReplyer.reply(receivedMessage);
 		}

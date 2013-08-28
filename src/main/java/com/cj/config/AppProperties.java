@@ -26,4 +26,7 @@ public class AppProperties {
 
 	@Value("${database.name}")
 	private String databaseName;
+	
+	@Value("${site.base}")
+	private String siteBase;
 }
