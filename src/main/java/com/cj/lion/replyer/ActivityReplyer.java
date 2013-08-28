@@ -59,8 +59,8 @@ public class ActivityReplyer implements Replyer {
 			NewsSentContent newsSentContent = new NewsSentContent();
 			List<Article> articles = new ArrayList<Article>();
 			newsSentContent.setArticles(articles);
-
 			Article article = new Article();
+			articles.add(article);
 			article.setTitle(TITLE);
 			article.setDescription(DESCRIPTION);
 			article.setPicUrl(appProperties.getSiteBase() + PIC_URL);
