@@ -92,7 +92,7 @@ public class NewsPropertiesReplyer implements Replyer{
 		}
 		List<Article> articles=newsSentContent.getArticles();
 		for(Article article:articles){
-			String url=UriComponentsBuilder.fromHttpUrl(article.getUrl()).queryParam("wechatId", receivedMessage.getOther()).build().toUriString();
+			String url=UriComponentsBuilder.fromHttpUrl(article.getUrl()).queryParam("other", receivedMessage.getOther()).build().toUriString();
 			article.setUrl(url);
 		}
 		

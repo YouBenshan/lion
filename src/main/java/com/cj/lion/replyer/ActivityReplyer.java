@@ -67,7 +67,7 @@ public class ActivityReplyer implements Replyer {
 
 			String url = UriComponentsBuilder
 					.fromHttpUrl(appProperties.getSiteBase() + URL)
-					.queryParam("wechatId", receivedMessage.getOther()).build()
+					.queryParam("other", receivedMessage.getOther()).build()
 					.toUriString();
 			article.setUrl(url);
 
