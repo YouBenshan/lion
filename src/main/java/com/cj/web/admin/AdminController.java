@@ -2,6 +2,7 @@ package com.cj.web.admin;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +22,7 @@ import com.cj.domain.received.ReceivedMessage;
 import com.cj.repository.received.ActiveInfo;
 import com.cj.repository.received.EventReceivedMessageRepository;
 import com.cj.repository.received.ReceivedMessageRepository;
+import com.cj.utils.query.Filter;
 import com.cj.utils.query.Search;
 
 /**
@@ -56,9 +59,17 @@ public class AdminController {
 
 
 	
-	@RequestMapping(value = "/admin/receivedMessage/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/receivedMessage/search", method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"})
 	public @ResponseBody
-	Page<ReceivedMessage> search(@Search(ReceivedMessage.class) Specification<ReceivedMessage> specification,Pageable pageable) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	Page<ReceivedMessage> search(@Search(ReceivedMessage.class) Specification<ReceivedMessage> specification,Pageable pageable){
+
+		Page<ReceivedMessage> result = receivedMessageRepository.findAll(specification, pageable);
+		return result;
+	}
+	
+	@RequestMapping(value = "/admin/receivedMessage/searchByJson", method = RequestMethod.POST, consumes = {"application/json"})
+	public @ResponseBody
+	Page<ReceivedMessage> searchByJson(@Search(ReceivedMessage.class) Specification<ReceivedMessage> specification,Pageable pageable) {
 
 		Page<ReceivedMessage> result = receivedMessageRepository.findAll(specification, pageable);
 		return result;
@@ -76,5 +87,7 @@ public class AdminController {
 	Page<ActiveInfo> topActive(Pageable pageable) {
 		return receivedMessageRepository.findActive(pageable);
 	}
+	
+
 	
 }
