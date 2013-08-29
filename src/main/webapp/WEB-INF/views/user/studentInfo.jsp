@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <link href="../../../resources/css/personal.css" rel="stylesheet" type="text/css">
-<script src="../../../resources/js/vendor/jquery-2.0.3.min.js" type="text/javascript"></script>
+<div class="qiandaobanner"> <a  href="javascript:history.go(-1);"><img src="../../../resources/img/fans.jpg" ></a> </div>
 <head>
 <title>个人资料</title>
 </head>
