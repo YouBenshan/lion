@@ -21,7 +21,7 @@ import com.cj.lion.repository.StudentInfoRepository;
 @Controller
 @RequestMapping(value = "/user")
 public class StudentsController {
-	public static final String mainPage="/resources/site/index.html";
+	public static final String FINISH_PAGE="/resources/site/personalFinish.html";
 	
 	@Autowired
 	private StudentInfoRepository studentInfoRepository;
@@ -37,7 +37,7 @@ public class StudentsController {
 			return infoForm(info);
 		}
 		studentInfoRepository.save(info);
-		return "redirect:"+mainPage;
+		return "redirect:"+FINISH_PAGE;
 	}
 	
 	
