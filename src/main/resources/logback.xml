@@ -24,12 +24,9 @@
 	    </encoder>
   	</appender>
 
-    <logger name="com.cj" level="debug"/>
-    <logger name="org.springframework.web" level="info">
-    	<appender-ref ref="console"/>
-    </logger>
+    <logger name="com.cj" level="info"/>
          
-    <root level="info">
+    <root level="error">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
     </root>

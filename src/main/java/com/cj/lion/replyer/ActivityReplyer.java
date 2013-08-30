@@ -7,6 +7,7 @@ import java.util.List;
 
 import lombok.Setter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cj.config.AppProperties;
@@ -21,6 +22,7 @@ import com.cj.replyer.Replyer;
 @Setter
 public class ActivityReplyer implements Replyer {
 
+	@Autowired
 	private AppProperties appProperties;
 
 	private final Date endDate;
