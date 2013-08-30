@@ -16,7 +16,7 @@ import com.cj.domain.IdEntity;
 @Entity
 public class StudentInfo extends IdEntity{
 	@Size(min=1)
-	private String other;
+	private String wechatId;
 	@Size(min=1)
 	private String name;
 	@Size(min=1)

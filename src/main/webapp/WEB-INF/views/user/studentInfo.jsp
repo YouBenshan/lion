@@ -17,7 +17,7 @@
 <body id="fans">
 <form:form modelAttribute="studengInfo">
 
-<input name="other" type="hidden" value="${param.other}">
+<input name="wechatId" type="hidden" value="${param.other}">
 <div class="qiandaobanner"> <a href="javascript:history.go(-1);"><img src="<c:url value="/resources/site/img/fans.jpg"/>" ></a> </div>
 <div class="cardexplain">
 
@@ -94,7 +94,7 @@ return
 }
 alert("保存成功");
 
-sumbit(); 
+$("form").submit(); 
 });
 </script> 
 <script type="text/javascript"> 
