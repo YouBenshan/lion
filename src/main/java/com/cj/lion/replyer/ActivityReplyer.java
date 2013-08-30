@@ -16,7 +16,6 @@ import com.cj.domain.received.TextReceivedMessage;
 import com.cj.domain.sent.Article;
 import com.cj.domain.sent.NewsSentContent;
 import com.cj.domain.sent.SentContent;
-import com.cj.domain.sent.TextSentContent;
 import com.cj.replyer.Replyer;
 
 @Setter
@@ -26,20 +25,29 @@ public class ActivityReplyer implements Replyer {
 
 	private final Date endDate;
 	private static final String FLAG = "新生新体验";
-	private static final String INTRODUCE = "欢迎参加“改变，从我的细齿洁牙刷开始”活动，即日起至10月7日，北上广深四地高校新生，只要晒出小细送出的细齿洁牙刷靓照，即有机会赢取好礼！请用微信上传相片";
-	private final TextSentContent textSentContent;
+	private final NewsSentContent newsSentContentStart;
 
 	private static final String TITLE = "请提交联系方式来抽奖";
-	private static final String DESCRIPTION = "我们将选出最美牙齿";
-	private static final String PIC_URL = "/resources/site/student/student.jpg";
+	private static final String DESCRIPTION = "我们将选出最美牙刷";
+	private static final String DESCRIPTION_START = "发送牙刷靓照参与有奖活动";
+	private static final String PIC_URL_START = "/resources/site/student/student.jpg";
+	private static final String PIC_URL = "/resources/site/student/studentInfo.jpg";
+	private static final String URL_START="/resources/site/brand4.html";
 	private static final String URL = "/user/studentInfo";
 
 	public ActivityReplyer() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2013, 9, 7);
 		endDate = calendar.getTime();
-		textSentContent = new TextSentContent();
-		textSentContent.setContent(INTRODUCE);
+		newsSentContentStart = new NewsSentContent();
+		List<Article> articles = new ArrayList<Article>();
+		newsSentContentStart.setArticles(articles);
+		Article article = new Article();
+		articles.add(article);
+		article.setTitle(FLAG);
+		article.setDescription(DESCRIPTION_START);
+		article.setPicUrl(appProperties.getSiteBase() + PIC_URL_START);
+		article.setUrl(appProperties.getSiteBase()+URL_START);
 	}
 
 	@Override
@@ -52,7 +60,7 @@ public class ActivityReplyer implements Replyer {
 			String incomingContent = ((TextReceivedMessage) receivedMessage)
 					.getContent();
 			if (FLAG.equals(incomingContent)) {
-				return textSentContent;
+				return newsSentContentStart;
 			}
 		}
 		if (receivedMessage instanceof ImageReceivedMessage) {

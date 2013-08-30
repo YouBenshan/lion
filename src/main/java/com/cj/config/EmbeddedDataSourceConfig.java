@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@Profile({  "test" })
+@Profile({"default", "test" })
 class EmbeddedDataSourceConfig {
 
 	@Autowired
@@ -33,11 +33,7 @@ class EmbeddedDataSourceConfig {
 	 */
 	@Bean
 	public DataSource dataSource() {
-		EmbeddedDatabaseFactoryBean embeddedDatabaseFactoryBean = new EmbeddedDatabaseFactoryBean();
-		embeddedDatabaseFactoryBean.setDatabaseName(appProperties
-				.getDatabaseName());
-		embeddedDatabaseFactoryBean.setDatabaseType(EmbeddedDatabaseType.H2);
-		embeddedDatabaseFactoryBean.afterPropertiesSet();
-		return embeddedDatabaseFactoryBean.getObject();
+		return new EmbeddedDatabaseBuilder().setName(appProperties
+				.getDatabaseName()).setType(EmbeddedDatabaseType.H2).build();
 	}
 }
