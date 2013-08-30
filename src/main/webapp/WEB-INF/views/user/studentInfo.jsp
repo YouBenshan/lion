@@ -8,16 +8,17 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<link href="../../../resources/css/personal.css" rel="stylesheet" type="text/css">
-<div class="qiandaobanner"> <a  href="javascript:history.go(-1);"><img src="../../../resources/img/fans.jpg" ></a> </div>
+<link href="<c:url value="/resources/site/css/personal.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/resources/site/js/jquery-2.0.3.min.js"/>" type="text/javascript"></script>
 <head>
 <title>个人资料</title>
 </head>
+
 <body id="fans">
-	<form:form modelAttribute="studengInfo">
-	<input name="other" type="hidden" value="${param.other}">
-	
-<div class="qiandaobanner"> <a   href="javascript:history.go(-1);"><img src="../../../resources/img/fans.jpg" ></a> </div>
+<form:form modelAttribute="studengInfo">
+
+<input name="other" type="hidden" value="${param.other}">
+<div class="qiandaobanner"> <a href="javascript:history.go(-1);"><img src="<c:url value="/resources/site/img/fans.jpg"/>" ></a> </div>
 <div class="cardexplain">
 
 <ul class="round">
@@ -64,8 +65,8 @@
 	</div>
 	</div>
 </div>
-</form:form>
 
+</form:form>
 </body>
 </html>
 <script type="text/javascript"> 
@@ -74,26 +75,26 @@ function() {
 var btn = $(this);
 var truename = $("#truename").val();
 if (truename == '') {
-alert("请输入姓名");
+alert("请输入姓名!");
 return
 }
 var school = $("#school").val();
 if (school == '') {
-alert("请输入学校");
+alert("请输入学校!");
 return
 }
 var tel = $("#tel").val();
 if (tel == '') {
-alert("请输入手机号1");
+alert("请输入手机号!");
 return
 }
 if(!(/^1[3|4|5|6|7|8][0-9]\d{4,8}$/.test(tel))){
-alert("请检查输入手机号错误！");
+alert("输入手机号错误请检查！");
 return
 }
-$("#showcard").sumbit();
 alert("保存成功");
-);
+sumbit(); 
+});
 </script> 
 <script type="text/javascript"> 
 $(document).ready(function () { 
