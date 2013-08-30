@@ -2932,6 +2932,11 @@ margin-left:-110px;
 	margin:0;
 }
 
+#secondHd{
+   width: 100%;
+   min-width: 320px;
+}
+
 /*∆∑≈∆ΩÈ…‹*/
 .about_box{font:13px/23px 'Microsoft YaHei';color:#666;}
 .titleName{font:18px/28px 'Microsoft YaHei';color:#666;}
