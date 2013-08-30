@@ -93,6 +93,7 @@ alert("输入手机号错误请检查！");
 return
 }
 alert("保存成功");
+
 sumbit(); 
 });
 </script> 
