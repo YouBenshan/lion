@@ -7,7 +7,6 @@ import java.util.List;
 
 import lombok.Setter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cj.config.AppProperties;
@@ -22,8 +21,7 @@ import com.cj.replyer.Replyer;
 @Setter
 public class ActivityReplyer implements Replyer {
 
-	@Autowired
-	private AppProperties appProperties;
+	private final AppProperties appProperties;
 
 	private final Date endDate;
 	private static final String FLAG = "新生新体验";
@@ -37,7 +35,8 @@ public class ActivityReplyer implements Replyer {
 	private static final String URL_START="/resources/site/brand4.html";
 	private static final String URL = "/user/studentInfo";
 
-	public ActivityReplyer() {
+	public ActivityReplyer(AppProperties appProperties) {
+		this.appProperties=appProperties;
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2013, 9, 7);
 		endDate = calendar.getTime();

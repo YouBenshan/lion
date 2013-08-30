@@ -50,20 +50,13 @@ public class ReplyerConfig {
 		return propertiesReplyer;
 	}
 
-	
-	@Bean
-	public ActivityReplyer activityReplyer() {
-		ActivityReplyer activityReplyer = new ActivityReplyer();
-		return activityReplyer;
-	}
 
 	@Bean
 	public ReplyerChain replyerChain(NewsPropertiesReplyer newsPropertiesReplyer,
 			TextPropertiesReplyer textPropertiesReplyer,SubscribeReplyer subscribeReplyer, LastReplyer lastReplyer) {
 		ReplyerChain replyerChain = new ReplyerChain();
 		
-		ActivityReplyer activityReplyer=new ActivityReplyer();
-		activityReplyer.setAppProperties(appProperties);
+		ActivityReplyer activityReplyer=new ActivityReplyer(appProperties);
 		replyerChain.addCustomReplyer(activityReplyer);
 		
 		replyerChain.setNewsPropertiesReplyer(newsPropertiesReplyer);
