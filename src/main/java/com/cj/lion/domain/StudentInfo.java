@@ -1,6 +1,7 @@
 package com.cj.lion.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -20,5 +21,7 @@ public class StudentInfo extends IdEntity{
 	private String school;
 	@Size(min=1)
 	private String  mobile;
+	@Lob
+	private byte[] pic;
 	
 }
