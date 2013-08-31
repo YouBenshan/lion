@@ -38,7 +38,7 @@ public class ActivityReplyer implements Replyer {
 	public ActivityReplyer(AppProperties appProperties) {
 		this.appProperties=appProperties;
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2013, 9, 7);
+		calendar.set(2013, Calendar.OCTOBER, 8);
 		endDate = calendar.getTime();
 		newsSentContentStart = new NewsSentContent();
 		List<Article> articles = new ArrayList<Article>();

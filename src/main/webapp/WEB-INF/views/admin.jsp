@@ -12,13 +12,14 @@
 		<div class="navbar navbar-inverse navbar-static-top"
 			ng-controller="NavCtrl">
 			<div class="navbar-inner">
-				{{currentUrl}} <a class="brand" href="#">wechat 管理</a>
+				<a class="brand" href="#">wechat 管理</a>
 				<ul class="nav">
 					<li ng-repeat="nav in navs"
 						ng-class="{'active': location.url().indexOf(nav.url)==1}"><a
 						ng-href="#/{{nav.url}}">{{nav.name}}</a></li>
 				</ul>
 				<ul class="nav pull-right">
+					<li><a href="<c:url value='/user/studentPic'/>">新生新体验</a></li>
 					<li><a href="<c:url value='/logout'/>">logout</a></li>
 				</ul>
 			</div>

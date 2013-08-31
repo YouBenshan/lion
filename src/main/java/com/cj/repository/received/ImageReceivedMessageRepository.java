@@ -10,5 +10,7 @@ import com.cj.domain.received.ImageReceivedMessage;
 public interface ImageReceivedMessageRepository extends
 		JpaRepository<ImageReceivedMessage, Long>,
 		JpaSpecificationExecutor<ImageReceivedMessage> {
+	
+	public ImageReceivedMessage findByOther(String other);
 
 }

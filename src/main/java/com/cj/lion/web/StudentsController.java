@@ -4,6 +4,9 @@ import javax.validation.Valid;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,6 +29,12 @@ public class StudentsController {
 	@Autowired
 	private StudentInfoRepository studentInfoRepository;
 	
+	 @Autowired
+	    JobLauncher jobLauncher;
+
+	    @Autowired
+	    Job job;
+	
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET)
 	public String infoForm(@ModelAttribute StudentInfo studentInfo) {
 		return "user/studentInfo";
@@ -40,5 +49,14 @@ public class StudentsController {
 		return "redirect:"+FINISH_PAGE;
 	}
 	
+	@RequestMapping("/studentPic")
+	public String studentPic() throws Exception {
+		return "user/studentPic";
+	}
 	
+	@RequestMapping("/readPicFromWechat")
+	public void readPicFromWechat() throws Exception {
+		jobLauncher.run(job, new JobParameters());
+	}
+
 }
