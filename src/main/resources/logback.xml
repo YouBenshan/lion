@@ -24,9 +24,9 @@
 	    </encoder>
   	</appender>
 
-    <logger name="com.cj" level="info"/>
+    <logger name="com.cj" level="debug"/>
          
-    <root level="error">
+    <root level="info">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
     </root>
