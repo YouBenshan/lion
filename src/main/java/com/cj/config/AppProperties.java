@@ -24,7 +24,7 @@ public class AppProperties {
 	@Value("${wechat.id}")
 	private String wecahtId;
 
-	@Value("${database.name}")
+	@Value("${H2database.name}")
 	private String databaseName;
 	
 	@Value("${site.base}")
