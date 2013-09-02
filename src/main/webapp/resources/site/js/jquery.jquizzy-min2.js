@@ -75,7 +75,6 @@
 		
         function judgeSkills(userAnswers) {
 			var answersString = userAnswers.join('');
-			alert(answersString);
             if (answersString == 111) return config.resultComments.perfect;
             else if (answersString = 222) return config.resultComments.excellent;
             else if (answersString = 333) return config.resultComments.good;
