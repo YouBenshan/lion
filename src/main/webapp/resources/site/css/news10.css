@@ -1134,7 +1134,7 @@ max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:
 .about_box .about_img2{padding-top:6px;display:block;position:relative;left:25px;}
 .about_box .block1 p,
 .about_box .about_img2{overflow:hidden;zoom:1;}
-.about_box .block1 p{margin-bottom:6px;padding:0 10px 0 25px;}
+.about_box .block1 p{margin-bottom:6px;padding:0 2px 0 12px;}
 .about_box .block1 .p1{padding-top:12px;}
 .about_box .block1 strong{background:#fe0466;color:#fff;font-weight:400;margin:0 1px 0 0;padding:0 0 0 3px;}
 .only3 .productTitle h1{width:300px; height:30px; background:url(../img/producttitle.png) 0 -30px no-repeat; text-indent:-9999px; overflow:hidden; }
