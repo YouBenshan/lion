@@ -16,7 +16,7 @@ document.writeln("	z-index:999;");
 document.writeln("	-moz-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);");
 document.writeln("	-webkit-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);");
 document.writeln("	box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);");
-document.writeln("	background-color: #DE1A04;");
+document.writeln("	background-color: #3B6FFF;");
 document.writeln("}");
 document.writeln(".plugbg span {");
 document.writeln("	display: block;");
