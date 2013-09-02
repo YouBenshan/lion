@@ -12,7 +12,7 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@Profile({"default",  "test" })
+@Profile({"test" })
 class EmbeddedDataSourceConfig {
 
 	@Autowired
