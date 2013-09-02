@@ -27,7 +27,7 @@ public class ActivityReplyer implements Replyer {
 	private static final String FLAG = "新生新体验";
 	private final NewsSentContent newsSentContentStart;
 
-	private static final String TITLE = "请提交联系方式来抽奖";
+	private static final String TITLE = "点击图片，填写领奖信息";
 	private static final String DESCRIPTION = "我们将选出最美牙刷";
 	private static final String DESCRIPTION_START = "发送牙刷靓照赢大奖";
 	private static final String PIC_URL_START = "/resources/site/student/student.jpg";
