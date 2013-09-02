@@ -11,6 +11,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+import com.cj.config.AppProperties;
 import com.cj.domain.security.Account;
 import com.cj.domain.security.Permission;
 import com.cj.domain.security.Role;
@@ -21,6 +22,9 @@ import com.cj.repository.security.RoleRepository;
 public class TesterAccountDataPopulator implements
 		ApplicationListener<ContextRefreshedEvent> {
 	private boolean notExcuted = true;
+	
+	@Autowired
+	private AppProperties appProperties;
 
 	@Autowired
 	private AccountHelper accountHelper;
@@ -51,9 +55,9 @@ public class TesterAccountDataPopulator implements
 				roles.add(user);
 
 				Account account = new Account();
-				account.setUsername("u122769");
-				account.setPassword("u122769");
-				account.setEmail("u122769@covisint.com");
+				account.setUsername(appProperties.getUsername());
+				account.setPassword(appProperties.getPassword());
+				account.setEmail("u122769@compuware.com");
 				account.setRoles(roles);
 				accountHelper.createAccount(account);
 			} catch (DataIntegrityViolationException e) {

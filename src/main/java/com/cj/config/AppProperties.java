@@ -29,4 +29,10 @@ public class AppProperties {
 	
 	@Value("${site.base}")
 	private String siteBase;
+	
+	@Value("${account.username}")
+	private String username;
+	
+	@Value("${account.password}")
+	private String password;
 }

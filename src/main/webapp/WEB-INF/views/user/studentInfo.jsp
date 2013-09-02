@@ -17,7 +17,7 @@
 <body id="fans">
 <form:form modelAttribute="studengInfo">
 
-<input name="wechatId" type="hidden" value="${param.other}">
+<input type="hidden" name="wechatId" value="${param.other}"/>
 <div class="qiandaobanner"> <a href="javascript:history.go(-1);"><img src="<c:url value="/resources/site/img/fans.jpg"/>" ></a> </div>
 <div class="cardexplain">
 

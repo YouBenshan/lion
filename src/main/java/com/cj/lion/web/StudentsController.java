@@ -10,7 +10,6 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,14 +35,14 @@ public class StudentsController {
 	    Job job;
 	
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET)
-	public String infoForm(@ModelAttribute StudentInfo studentInfo) {
+	public String infoForm() {
 		return "user/studentInfo";
 	}
 	
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.POST)
 	public String infoSave(@Valid StudentInfo info, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return infoForm(info);
+			return "/user/studentInfo?other"+info.getWechatId();
 		}
 		studentInfoRepository.save(info);
 		return "redirect:"+FINISH_PAGE;
