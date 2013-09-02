@@ -79,7 +79,6 @@ public class ActivityReplyer implements Replyer {
 					.queryParam("other", receivedMessage.getOther()).build()
 					.toUriString();
 			article.setUrl(url);
-
 			return newsSentContent;
 		}
 		return null;
