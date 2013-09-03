@@ -1153,9 +1153,3 @@ right:0;
 	height:125px;font-weight:normal;line-height:16px;padding:0;
 	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
 }
-#txt{
- height:80px; 
- width:300px; 
- border:1px solid #333333; 
- position:relative  
-}
