@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<link href="<c:url value="/resources/site/css/personal.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/site/css/personal.css?ver=00001"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/site/js/jquery-2.0.3.min.js"/>" type="text/javascript"></script>
 <head>
 <title>个人资料</title>
@@ -18,7 +18,7 @@
 <form:form modelAttribute="studengInfo">
 
 <input type="hidden" name="wechatId" value="${param.other}"/>
-<div class="qiandaobanner"> <a href="javascript:history.go(-1);"><img src="<c:url value="/resources/site/img/fans.jpg"/>" ></a> </div>
+<div class="qiandaobanner"> <a href="javascript:history.go(-1);"><img src="<c:url value="/resources/site/img/fans.jpg?ver=00001"/>" ></a> </div>
 <div class="cardexplain">
 
 <ul class="round">
