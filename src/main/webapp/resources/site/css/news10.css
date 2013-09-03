@@ -627,7 +627,7 @@ right:0;
 	color:#2f2f2f;
 	font-weight:normal;
 	height:20px;font-weight:normal;line-height:16px;padding:0;
-max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
+	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
 }
 .todayList li.only2 h2 {
 	padding:6px 0 8px;
@@ -672,7 +672,7 @@ max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:
 	right: 10px;
 	height: 14px;
 	width: 14px;
-	background:url(../images/themes/jiantou.png) no-repeat 0 0 ;
+	background:url(../img/jiantou.png) no-repeat 0 0 ;
 	background-size: 14px 14px;
 }
 
@@ -897,6 +897,7 @@ max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:
 	background-color:#FFFFFF;
 	margin:15px 10px;
 	padding:15px;
+	min-width:320px;
 }
 #news2 .list{
 	border:0px solid #D1D1D1;
@@ -1129,6 +1130,7 @@ max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:
 }
 
 /*品牌介绍*/
+
 .about_box{font:13px/23px 'Microsoft YaHei';color:#666;}
 .titleName{font:18px/28px 'Microsoft YaHei';color:#666;}
 .about_box .about_img2{padding-top:6px;display:block;position:relative;left:25px;}
@@ -1142,3 +1144,18 @@ max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:
                      -moz-border-radius: 10px; 
                       border-radius: 10px;
 					  -webkit-border-radius:10px;}
+.prize_img {float: left;width:35%;margin:0px 15px 0px 5px; height:110px;width:100px}	
+.prize_img2 {float: left;width:35%;margin:0px 50px 0px 5px; height:140px;width:65px}					  
+.prize li {
+	font-size: 16px;
+	color:#2f2f2f;
+	font-weight:normal;
+	height:125px;font-weight:normal;line-height:16px;padding:0;
+	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
+}
+#txt{
+ height:80px; 
+ width:300px; 
+ border:1px solid #333333; 
+ position:relative  
+}
