@@ -30,8 +30,8 @@ public class ActivityReplyer implements Replyer {
 	private static final String TITLE = "点击图片，填写领奖信息";
 	private static final String DESCRIPTION = "我们将选出最美牙刷";
 	private static final String DESCRIPTION_START = "发送牙刷靓照赢大奖";
-	private static final String PIC_URL_START = "/resources/site/student/student.jpg";
-	private static final String PIC_URL = "/resources/site/student/studentInfo.jpg";
+	private static final String PIC_URL_START = "/resources/site/student/student.jpg?ver=00001";
+	private static final String PIC_URL = "/resources/site/student/studentInfo.jpg?ver=00001";
 	private static final String URL_START="/resources/site/brand4.html";
 	private static final String URL = "/user/studentInfo";
 
