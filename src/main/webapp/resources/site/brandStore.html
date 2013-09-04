@@ -9,16 +9,15 @@
 <meta name="format-detection" content="telephone=no">
 <meta charset="utf-8">
 
-<link href="css/news10.css?ver=1" rel="stylesheet" type="text/css" />
-<link href="css/plugmenu.css?ver=1" rel="stylesheet"  type="text/css">
+<link href="css/detail.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/plugmenu.css">
 <style>
  .themeStyle{background:#3B6FFF}  
-</style>
+</style>   
 
 </head> 
-<body id="news2">
 
-<!--头部导航开始-->
+<body id="news2">
 <div id="ui-header">
 <div class="fixed">
 <a class="ui-title" id="popmenu">细齿洁导航</a>
@@ -30,32 +29,22 @@
 <div id="win">
 <ul class="dropdown"> 
 <li><a href="brand1.html"><span>了解细齿洁</span></a></li>
- 
 <li><a href="brand2.html"><span>产品家族</span></a></li>
- 
 <li><a href="brand3.html"><span>牙龈护理</span></a></li>
- 
 <li><a href="brand4.html"><span>活动试用</span></a></li>
- 
 <li><a href="brand5.html"><span>促销优惠</span></a></li>
- 
 <li><a href="brand6.html"><span>细致微关怀</span></a></li>
- 	
 <div class="clr"></div>
 </ul>
 </div>
-<!--头部导航结束-->
-
-<!--正头开始-->
 <div class="Listpage">
 <div class="top46"></div>
 <div class="page-bizinfo">
 <div class="header" style="position: relative;">
 <h1 id="activity-name">品牌故事</h1>
-<span id="post-date">2013-09-01</span>
+<span id="post-date">2013-09-1</span>
 </div>
 <div class="text" id="content">
-
 <div class="about_box">
 <div class="block1">
 	<p class="p1">Systema细齿洁是日本狮王旗下口腔护理领导品牌，始终致力于牙周护理的研究。</p>
@@ -64,15 +53,16 @@
 	<p>迄今已推出<strong>牙刷、</strong><strong>牙膏、</strong><strong>漱口水、</strong><strong>牙缝刷</strong>等全套口腔护理专业产品，成为日本狮王众多口腔护理产品中最受欢迎的品牌。</p>
 	<img src="img/about2.jpg" class="about_img2"  style="width:90%"/>
 	<p>其中，Systema细齿洁超极细毛牙刷为日本狮王首创，采用世界领先科技，刷毛尖端直径仅为0.02毫米，并在日本申获专利。凭借其独有的“净、软、柔、韧“超极细毛，比普通软毛牙刷更加深入洁净牙龈沟及齿缝，并能减少67%的牙龈压力，有助缓解牙龈出血、敏感等多种牙龈问题。</p>
+	<!--
 	<img src="img/about3.jpg" class="about_img2"  style="width:90%"/>
 	<img src="img/about4.jpg" class="about_img2"  style="width:90%"/>
-	<p><p>
+	<p><p>-->
 </div>
 </div>
-  
+<p>			
 <div class="page-content" >
 </div>
-</div>       
+</div>      
 <a class="footer" href="#top"  target="_self"><span class="top">返回顶部</span></a>
 <script>
 function dourl(url){
@@ -87,6 +77,7 @@ location.href= url;
 <div class="plug-btn plug-btn5 close"></div>
                     </div>
 </div>
+</div>
  <div class="copyright">Copyright © 2013 Lion Corportion. All rights reserved.</div> 
  <div style="display:none"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=27038520" charset="UTF-8"></script></div>
  <!--QA for  s-66915.gotocdn.com 
@@ -96,34 +87,33 @@ location.href= url;
 </body>
 </html>
 
-<script src="js/audio.min.js" type="text/javascript"></script>
 <script src="js/zepto.min.js" type="text/javascript"></script>
 <script src="js/plugmenu.js" type="text/javascript"></script>
+<script src="js/audio.min.js" type="text/javascript"></script>
 <script src="js/play.js" type="text/javascript"></script>
 <script src="js/plugback.js" type="text/javascript"></script>
-
 <script>
-  audiojs.events.ready(function() {
-	audiojs.createAll();
-  });
-</script>
-
-<script>
-	window.onload = function ()
-	{
-	var oWin = document.getElementById("win");
-	var oLay = document.getElementById("overlay");	
-	var oBtn = document.getElementById("popmenu");
-	var oClose = document.getElementById("close");
-	oBtn.onclick = function ()
-	{
-	oLay.style.display = "block";
-	oWin.style.display = "block"	
-	};
-	oLay.onclick = function ()
-	{
-	oLay.style.display = "none";
-	oWin.style.display = "none"	
-	}
-	};
+      audiojs.events.ready(function() {
+        audiojs.createAll();
+      });
+ </script>
+ 
+     <script>
+window.onload = function ()
+{
+var oWin = document.getElementById("win");
+var oLay = document.getElementById("overlay");	
+var oBtn = document.getElementById("popmenu");
+var oClose = document.getElementById("close");
+oBtn.onclick = function ()
+{
+oLay.style.display = "block";
+oWin.style.display = "block"	
+};
+oLay.onclick = function ()
+{
+oLay.style.display = "none";
+oWin.style.display = "none"	
+}
+};
 </script>
