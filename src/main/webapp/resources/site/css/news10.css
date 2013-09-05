@@ -432,7 +432,7 @@ h3 {
 	white-space: nowrap;
 }
 
-#cate3{background-color: #F0EFEF;overflow-x: hidden;}
+#cate3{background-color: #D4E7FC;overflow-x: hidden;}
 
 /*popmenu*/
 #popmenu{cursor:pointer; display:block; position:relative;  text-align: center; width: 200px; margin:0 auto}
@@ -1153,13 +1153,10 @@ right:0;
 	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
 }
 
-/*3级别导航*/
-.todayList.only5 {border-bottom:1px solid #D0E6F3; padding:5px 15px; clear:both;}
-.todayList.only5 a{display:block; text-indent:20px; background:url(img/dot.gif) 5px center no-repeat;}
+/*2,3级导航*/
+#menuNav{background:url(../img/product/productBg.jpg) 0 0 repeat; display: block; margin: 0 auto;}
 
-#product{background:url(../img/product/productBg.jpg) 0 0 repeat; display: block; margin: 0 auto;}
-
-.productList li {
+.menuList li {
 	display: block;
 	color: #00CCCC;
 	border-bottom:1px solid #D0E6F3;
@@ -1177,37 +1174,34 @@ right:0;
 	-moz-box-shadow:0 1px 0 0 rgba(255, 255, 255, 1) inset;
 	-webkit-box-shadow:0 1px 0 0 rgba(255, 255, 255, 1) inset;
 }
-
-.productList li a{display:block; text-indent:30px; background:url(../img/product/dot.gif) 5px center no-repeat; padding:10px 40px 9px 15px;}
-
-.productList li.only3 a{
+.menuList li a{display:block; text-indent:30px; background:url(../img/product/dot.gif) 5px center no-repeat; padding:10px 40px 9px 15px;}
+.menuList li.only3 a{
 	padding:10px 40px 9px 15px;display: block;
 }
-.productList li:hover {
-	background-color:#66CCFF;
+.menuList li:hover {
+	background: #3EC7FD;
+	font-weight:bold;
+	cursor:pointer;
+	text-decoration:none;
+	color:#F60;
+}
+.menuList li:active {
+	background: #3EC7FD;
 	font-weight:bold;
 	cursor:pointer;
 	text-decoration:none;
 }
-.productList li:active {
-	background-color:#66CCFF;
-	font-weight:bold;
-	cursor:pointer;
-	text-decoration:none;
-}
-.productList li.only3 h2 {
+.menuList li.only3 h2 {
 	padding:0;	font-size: 16px;color:#0055A5;
 	font-weight:normal;
 	height:20px;font-weight:normal;line-height:16px;padding:0;
 	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
 }
-
-.productList  li.only3 p {
+.menuList  li.only3 p {
 	white-space: nowrap;
 	font-size: 16px;color:#0055A5;
 }
-
-.productList li .icon {
+.menuList li .icon {
 	margin-top: -6px;
 	position: absolute;
 	top: 50%;
@@ -1217,11 +1211,5 @@ right:0;
 	background:url(../img/jiantou.png) no-repeat 0 0 ;
 	background-size: 14px 14px;
 }
-
-.productList li.border-top-none {
-	border-top:0px solid #DDDDDD
-}
-.productList li.border-bottom-none {
-	border-bottom:0px solid #DDDDDD
-}
-.productList li.only3 a:hover{text-decoration:none; color:#F60;}
+.menuList li.border-top-none {border-top:0px solid #DDDDDD;}
+.navMenuTitle {color: #0055A5;padding:10px 5px 10px 5px;front-size:20px;border:1px solid #D0E6F3;border-radius: 15px 15px 2px 0px;}
