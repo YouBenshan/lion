@@ -24,7 +24,7 @@ public class ReplyerConfig {
 	public LastReplyer lastReplyer() {
 		LastReplyer lastReplyer = new LastReplyer();
 		TextSentContent sentContent = new TextSentContent();
-		sentContent.setContent("Pardon?");
+		sentContent.setContent("终于等到您啦～小细将为您提供贴心服务～  输入“小细”，查看更多详情～～");
 		lastReplyer.setSentContent(sentContent);
 		return lastReplyer;
 	}
