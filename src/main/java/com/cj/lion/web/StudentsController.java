@@ -29,7 +29,7 @@ public class StudentsController {
 	private StudentInfoRepository studentInfoRepository;
 	
 	 @Autowired
-	    JobLauncher jobLauncher;
+	 JobLauncher jobLauncher;
 
 	    @Autowired
 	    Job job;
@@ -54,8 +54,9 @@ public class StudentsController {
 	}
 	
 	@RequestMapping("/readPicFromWechat")
-	public void readPicFromWechat() throws Exception {
+	public String readPicFromWechat() throws Exception {
 		jobLauncher.run(job, new JobParameters());
+		return "redirect: /admin";
 	}
 
 }

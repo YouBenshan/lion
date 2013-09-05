@@ -1,4 +1,4 @@
-package com.cj.web.security;
+package com.cj.web;
 
 import lombok.Getter;
 import lombok.Setter;
