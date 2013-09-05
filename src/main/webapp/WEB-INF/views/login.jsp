@@ -9,7 +9,7 @@
 <body>
 	<div id="box">
 		<div class="title">Wechat Console Login</div>
-
+		<a href="<c:url value="/initData" />">initData</a>
 		<div class="content">
 			<form:form modelAttribute="loginCommand">
 

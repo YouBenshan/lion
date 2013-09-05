@@ -1,4 +1,4 @@
-package com.cj.web.admin;
+package com.cj.web;
 
 import java.util.Date;
 
