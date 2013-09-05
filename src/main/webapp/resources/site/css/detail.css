@@ -457,8 +457,8 @@ cursor:pointer;
                      -moz-border-radius: 10px; 
                       border-radius: 10px;
 					  -webkit-border-radius:10px;}
-.prize_img {float: left;width:35%;margin:0px 15px 0px 5px; height:110px;width:100px}	
-.prize_img2 {float: left;width:35%;margin:0px 50px 0px 5px; height:140px;width:65px}					  
+.prize_img {float: left;width:35%;margin:0px 3px 0px 3px; height:110px;width:100px}	
+.prize_img2 {float: left;width:30%;margin:0px 20px 0px 5px; height:140px;width:60px}					  
 .prize li {
 	font-size: 16px;
 	color:#2f2f2f;
