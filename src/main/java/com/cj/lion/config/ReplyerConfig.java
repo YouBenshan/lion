@@ -1,5 +1,8 @@
 package com.cj.lion.config;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,7 +48,7 @@ public class ReplyerConfig {
 	}
 
 	@Bean
-	public NewsPropertiesReplyer newsPropertiesReplyer() {
+	public NewsPropertiesReplyer newsPropertiesReplyer() throws FileNotFoundException, IOException {
 		NewsPropertiesReplyer propertiesReplyer = new NewsPropertiesReplyer();
 		return propertiesReplyer;
 	}

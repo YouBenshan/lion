@@ -1,5 +1,9 @@
 package com.cj.replyer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,7 +22,6 @@ import com.cj.domain.received.TextReceivedMessage;
 import com.cj.domain.sent.Article;
 import com.cj.domain.sent.NewsSentContent;
 import com.cj.domain.sent.SentContent;
-import com.cj.utils.PropertiesUtil;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Table;
@@ -32,16 +35,16 @@ public class NewsPropertiesReplyer implements Replyer{
 	private final String URL="url";
 	
 	Map<String,NewsSentContent> map=new HashMap<String,NewsSentContent>();
-	private final static String propertiesFilePath = "/newsReply.properties";
+	private final static String propertiesFileFolder = "/newsReply";
 	
-	public NewsPropertiesReplyer() {
-		this(propertiesFilePath);
-	}
-	
-	public NewsPropertiesReplyer(String... propertiesFilePaths) {
+	public NewsPropertiesReplyer() throws FileNotFoundException, IOException {
+		File folder=new File(this.getClass().getResource(propertiesFileFolder).getPath());
+		File[] propertiesFiles=folder.listFiles();
 		Set<Properties> propertiesSet=new HashSet<Properties>();
-		for(String propertiesFilePath: propertiesFilePaths){
-			Properties properties = PropertiesUtil.read(propertiesFilePath);
+		
+		for(File file: propertiesFiles){
+			Properties properties = new Properties();
+			properties.load(new FileReader(file));
 			propertiesSet.add(properties);
 		}
 		for(Properties properties:propertiesSet){
