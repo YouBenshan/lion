@@ -12,7 +12,8 @@ import com.cj.domain.received.ImageReceivedMessage;
 public interface ImageReceivedMessageRepository extends
 		JpaRepository<ImageReceivedMessage, Long>,
 		JpaSpecificationExecutor<ImageReceivedMessage> {
-	
-	public List<ImageReceivedMessage> findByOtherOrderByCreateTimeDesc(String other);
+
+	public List<ImageReceivedMessage> findByOtherOrderByCreateTimeDesc(
+			String other);
 
 }

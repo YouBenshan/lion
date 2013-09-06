@@ -12,11 +12,22 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@Profile({"test" })
+@Profile({ "test" })
 class EmbeddedDataSourceConfig {
 
 	@Autowired
 	private AppProperties appProperties;
+
+	/**
+	 * You can access this H2 database at <a href =
+	 * "http://localhost:8080/admin/console">the H2 administration console</a>.
+	 */
+	@Bean
+	public DataSource dataSource() {
+		return new EmbeddedDatabaseBuilder()
+				.setName(appProperties.getDatabaseName())
+				.setType(EmbeddedDatabaseType.H2).build();
+	}
 
 	@Bean
 	public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
@@ -25,15 +36,5 @@ class EmbeddedDataSourceConfig {
 		adapter.setGenerateDdl(true);
 		adapter.setShowSql(true);
 		return adapter;
-	}
-
-	/**
-	 * You can access this H2 database at <a href =
-	 * "http://localhost:8080/admin/console">the H2 administration console</a>.
-	 */
-	@Bean
-	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setName(appProperties
-				.getDatabaseName()).setType(EmbeddedDatabaseType.H2).build();
 	}
 }

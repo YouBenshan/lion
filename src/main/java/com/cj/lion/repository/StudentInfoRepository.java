@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.cj.lion.domain.StudentInfo;
 
 @Repository
-public interface StudentInfoRepository extends JpaRepository< StudentInfo, Long>, JpaSpecificationExecutor<StudentInfo>{
+public interface StudentInfoRepository extends
+		JpaRepository<StudentInfo, Long>, JpaSpecificationExecutor<StudentInfo> {
 	Page<StudentInfo> findByStoredIsFalse(Pageable pageable);
 }

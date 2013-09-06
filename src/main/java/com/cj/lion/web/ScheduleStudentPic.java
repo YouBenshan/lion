@@ -33,69 +33,70 @@ import com.cj.repository.received.ImageReceivedMessageRepository;
 @Component
 public class ScheduleStudentPic {
 
-	private static final String FOLDER_NAME="studentPic";
-	
+	private static final String FOLDER_NAME = "studentPic";
+
 	@Autowired
 	private StudentInfoRepository studentInfoRepository;
-	
-    @Autowired
-    private ImageReceivedMessageRepository imageReceivedMessageRepository;
 
-	@Scheduled(cron = "0 0 1-4 * * *")
-	public void syncStudentPic() {
-		log.info("sync Student's pictures");
-		Pageable pageable=new PageRequest(0,20);
-		Page<StudentInfo> studentInfos;
-		do{
-			studentInfos=studentInfoRepository.findByStoredIsFalse(pageable);
-			for(StudentInfo studentInfo:studentInfos){
-				this.syncPic(studentInfo);
-			}
-		}while(studentInfos.getNumberOfElements()>0);
-		log.info("finished sync Student's pictures");
+	@Autowired
+	private ImageReceivedMessageRepository imageReceivedMessageRepository;
+
+	private Path getStoredLink(String wechatId) throws IOException {
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
+		String dateString = dateformat.format(new Date());
+		String pathString = System.getProperty("user.home") + File.separator
+				+ FOLDER_NAME;
+		File folder = new File(pathString);
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+		pathString = pathString + File.separator + dateString;
+		folder = new File(pathString);
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+		pathString = pathString + File.separator + wechatId + ".jpg";
+		File file = new File(pathString);
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+
+		Path path = file.toPath();
+		return path;
 	}
-	
-	
-	
+
 	private void syncPic(StudentInfo studentInfo) {
-		List<ImageReceivedMessage> imageReceivedMessages=imageReceivedMessageRepository.findByOtherOrderByCreateTimeDesc(studentInfo.getWechatId());
+		List<ImageReceivedMessage> imageReceivedMessages = imageReceivedMessageRepository
+				.findByOtherOrderByCreateTimeDesc(studentInfo.getWechatId());
 		studentInfo.setStored(true);
 		studentInfoRepository.save(studentInfo);
-		if(imageReceivedMessages.size()>0){
+		if (imageReceivedMessages.size() > 0) {
 			String url = imageReceivedMessages.get(0).getPicUrl();
 			try {
-				InputStream inputStream=new URL(url).openStream();
-				Path path=getStoredLink(studentInfo.getWechatId());
-				Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+				InputStream inputStream = new URL(url).openStream();
+				Path path = getStoredLink(studentInfo.getWechatId());
+				Files.copy(inputStream, path,
+						StandardCopyOption.REPLACE_EXISTING);
 				inputStream.close();
 			} catch (IOException e) {
 				log.info(e.getMessage());
 			}
 		}
-		
+
 	}
-	
-	  private Path getStoredLink(String wechatId) throws IOException{
-			SimpleDateFormat dateformat= new SimpleDateFormat("yyyyMMdd");
-			String dateString = dateformat.format(new Date());
-			String pathString=System.getProperty("user.home")+File.separator+FOLDER_NAME;
-			File folder=new File(pathString);
-			if(!folder.exists()){
-				folder.mkdir();
+
+	@Scheduled(cron = "0 0 1-4 * * *")
+	public void syncStudentPic() {
+		log.info("sync Student's pictures");
+		Pageable pageable = new PageRequest(0, 20);
+		Page<StudentInfo> studentInfos;
+		do {
+			studentInfos = studentInfoRepository.findByStoredIsFalse(pageable);
+			for (StudentInfo studentInfo : studentInfos) {
+				this.syncPic(studentInfo);
 			}
-			pathString=pathString+File.separator+dateString;
-			folder=new File(pathString);
-			if(!folder.exists()){
-				folder.mkdir();
-			}
-			pathString=pathString+File.separator+wechatId+".jpg";
-			File file=new File(pathString);
-			if(!file.exists()){
-				file.createNewFile();
-			}
-			
-			Path path=file.toPath();
-			return path;
-		}
+		} while (studentInfos.getNumberOfElements() > 0);
+		log.info("finished sync Student's pictures");
+	}
 
 }

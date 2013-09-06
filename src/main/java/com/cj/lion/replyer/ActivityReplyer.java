@@ -32,11 +32,11 @@ public class ActivityReplyer implements Replyer {
 	private static final String DESCRIPTION_START = "发送牙刷靓照赢大奖";
 	private static final String PIC_URL_START = "/resources/site/student/student.jpg?ver=00001";
 	private static final String PIC_URL = "/resources/site/student/studentInfo.jpg?ver=00001";
-	private static final String URL_START="/resources/site/brand4.html";
+	private static final String URL_START = "/resources/site/brand4.html";
 	private static final String URL = "/user/studentInfo";
 
 	public ActivityReplyer(AppProperties appProperties) {
-		this.appProperties=appProperties;
+		this.appProperties = appProperties;
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2013, Calendar.OCTOBER, 8);
 		endDate = calendar.getTime();
@@ -48,7 +48,7 @@ public class ActivityReplyer implements Replyer {
 		article.setTitle(FLAG);
 		article.setDescription(DESCRIPTION_START);
 		article.setPicUrl(appProperties.getSiteBase() + PIC_URL_START);
-		article.setUrl(appProperties.getSiteBase()+URL_START);
+		article.setUrl(appProperties.getSiteBase() + URL_START);
 	}
 
 	@Override

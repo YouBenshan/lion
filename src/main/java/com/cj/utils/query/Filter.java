@@ -20,6 +20,14 @@ public class Filter {
 
 	private final Map<String, String[]> IN = new HashMap<String, String[]>();
 
+	public EnumMap<Operation, Map<String, String[]>> getPolybasics() {
+		EnumMap<Operation, Map<String, String[]>> operations = new EnumMap<Operation, Map<String, String[]>>(
+				Operation.class);
+		operations.put(Operation.IN, this.IN);
+		return operations;
+
+	}
+
 	public EnumMap<Operation, Map<String, String>> getUnitaries() {
 		EnumMap<Operation, Map<String, String>> operations = new EnumMap<Operation, Map<String, String>>(
 				Operation.class);
@@ -30,14 +38,6 @@ public class Filter {
 		operations.put(Operation.GTE, this.GTE);
 		operations.put(Operation.LTE, this.LTE);
 
-		return operations;
-
-	}
-
-	public EnumMap<Operation, Map<String, String[]>> getPolybasics() {
-		EnumMap<Operation, Map<String, String[]>> operations = new EnumMap<Operation, Map<String, String[]>>(
-				Operation.class);
-		operations.put(Operation.IN, this.IN);
 		return operations;
 
 	}

@@ -26,62 +26,64 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Table;
 
-public class NewsPropertiesReplyer implements Replyer{
-	private final String SEPERATOR="|";
-	private final int ARTICLE_MAX_SIZE=10;
-	private final String TITLE="title";
-	private final String DESCRIPTION="description";
-	private final String PIC_URL="picUrl";
-	private final String URL="url";
-	
-	Map<String,NewsSentContent> map=new HashMap<String,NewsSentContent>();
+public class NewsPropertiesReplyer implements Replyer {
+	private final String SEPERATOR = "|";
+	private final int ARTICLE_MAX_SIZE = 10;
+	private final String TITLE = "title";
+	private final String DESCRIPTION = "description";
+	private final String PIC_URL = "picUrl";
+	private final String URL = "url";
+
+	Map<String, NewsSentContent> map = new HashMap<String, NewsSentContent>();
 	private final static String propertiesFileFolder = "/newsReply";
-	
+
 	public NewsPropertiesReplyer() throws FileNotFoundException, IOException {
-		File folder=new File(this.getClass().getResource(propertiesFileFolder).getPath());
-		File[] propertiesFiles=folder.listFiles();
-		Set<Properties> propertiesSet=new HashSet<Properties>();
-		
-		for(File file: propertiesFiles){
+		File folder = new File(this.getClass()
+				.getResource(propertiesFileFolder).getPath());
+		File[] propertiesFiles = folder.listFiles();
+		Set<Properties> propertiesSet = new HashSet<Properties>();
+
+		for (File file : propertiesFiles) {
 			Properties properties = new Properties();
 			properties.load(new FileReader(file));
 			propertiesSet.add(properties);
 		}
-		for(Properties properties:propertiesSet){
-			String[] keywords=StringUtils.split(properties.getProperty("keywords"), SEPERATOR);
-			NewsSentContent sentContent=new NewsSentContent();
-			for(String keyword:keywords){
+		for (Properties properties : propertiesSet) {
+			String[] keywords = StringUtils.split(
+					properties.getProperty("keywords"), SEPERATOR);
+			NewsSentContent sentContent = new NewsSentContent();
+			for (String keyword : keywords) {
 				map.put(keyword, sentContent);
 			}
 			properties.remove("keywords");
-			
-			List<Article> articles=new ArrayList<Article>(ARTICLE_MAX_SIZE);
+
+			List<Article> articles = new ArrayList<Article>(ARTICLE_MAX_SIZE);
 			sentContent.setArticles(articles);
-			
-			Table< Integer,String, String> articleTable=HashBasedTable.create();
-			
-			for(Entry<Object, Object> e: properties.entrySet()){
-				String key=(String)e.getKey();
-				String[] keyArray=StringUtils.split(key, SEPERATOR);
-				Integer row= Integer.valueOf(keyArray[0]);
-				String collow=keyArray[1];
+
+			Table<Integer, String, String> articleTable = HashBasedTable
+					.create();
+
+			for (Entry<Object, Object> e : properties.entrySet()) {
+				String key = (String) e.getKey();
+				String[] keyArray = StringUtils.split(key, SEPERATOR);
+				Integer row = Integer.valueOf(keyArray[0]);
+				String collow = keyArray[1];
 				String value = (String) e.getValue();
 				articleTable.put(row, collow, value);
 			}
-			List<Integer> order=Lists.newArrayList(articleTable.rowKeySet());
+			List<Integer> order = Lists.newArrayList(articleTable.rowKeySet());
 			Collections.sort(order);
-			for(Integer row:articleTable.rowKeySet()){
-				Article article=new Article();
+			for (Integer row : articleTable.rowKeySet()) {
+				Article article = new Article();
 				article.setTitle(articleTable.get(row, TITLE));
 				article.setDescription(articleTable.get(row, DESCRIPTION));
 				article.setPicUrl(articleTable.get(row, PIC_URL));
 				article.setUrl(articleTable.get(row, URL));
-				articles.add( article);
+				articles.add(article);
 			}
 		}
 	}
-	
-	
+
 	@Override
 	public SentContent reply(ReceivedMessage receivedMessage) {
 		if (!(receivedMessage instanceof TextReceivedMessage)) {
@@ -89,17 +91,18 @@ public class NewsPropertiesReplyer implements Replyer{
 		}
 		String incomingContent = ((TextReceivedMessage) receivedMessage)
 				.getContent();
-		NewsSentContent newsSentContent=map.get(incomingContent);
-		if(newsSentContent==null){
+		NewsSentContent newsSentContent = map.get(incomingContent);
+		if (newsSentContent == null) {
 			return null;
 		}
-		List<Article> articles=newsSentContent.getArticles();
-		for(Article article:articles){
-			String url=UriComponentsBuilder.fromHttpUrl(article.getUrl()).queryParam("other", receivedMessage.getOther()).build().toUriString();
+		List<Article> articles = newsSentContent.getArticles();
+		for (Article article : articles) {
+			String url = UriComponentsBuilder.fromHttpUrl(article.getUrl())
+					.queryParam("other", receivedMessage.getOther()).build()
+					.toUriString();
 			article.setUrl(url);
 		}
-		
-		
+
 		return newsSentContent;
 	}
 

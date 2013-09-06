@@ -32,40 +32,17 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Table;
 import com.google.common.collect.Table.Cell;
 
-
 public class FilterMethodArgumentResolver<T> implements
 		HandlerMethodArgumentResolver {
 
 	private static final String FIELD_NAME_SEPERATOR = ".";
 
-	@Override
-	public boolean supportsParameter(MethodParameter parameter) {
-		return ClassUtils.isAssignable(parameter.getParameterType(),
-				Specification.class);
-	}
-
-	@Override
-	public Object resolveArgument(MethodParameter parameter,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
-			WebDataBinderFactory binderFactory) throws Exception {
-
-		Filter filter = bindFilterFromRequest(webRequest, binderFactory);
-
-		Search search = parameter.getParameterAnnotation(Search.class);
-		Class<?> clazz = search.value();
-
-		Table<Operation, String, Object> table = this.getTable(filter, clazz,
-				webRequest, binderFactory);
-
-		Specification<?> specification = getSpecification(table);
-
-		return specification;
-	}
-	
 	/*
 	 * bind Filter object from request follow the way of
-	 * @see org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor
-	*/ 
+	 * 
+	 * @see org.springframework.web.servlet.mvc.method.annotation.
+	 * ServletModelAttributeMethodProcessor
+	 */
 	private Filter bindFilterFromRequest(NativeWebRequest webRequest,
 			WebDataBinderFactory binderFactory) throws Exception, BindException {
 
@@ -84,78 +61,6 @@ public class FilterMethodArgumentResolver<T> implements
 
 		filter = (Filter) binder.getTarget();
 		return filter;
-	}
-
-	private Object getValue(Class<?> clazz, String name, String value,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory)
-			throws Exception {
-		
-		if(StringUtils.isBlank(value)){
-			return null;
-		}
-		
-		Object target = BeanUtils.instantiateClass(clazz);
-		WebDataBinder webDataBinder = binderFactory.createBinder(webRequest,
-				target, clazz.getName());
-		MutablePropertyValues propertyValues = new MutablePropertyValues();
-		propertyValues.add(name, value);
-		webDataBinder.bind(propertyValues);
-		return PropertyUtils.getNestedProperty(target, name);
-	}
-	
-	private List<Object> getValue(Class<?> clazz, String name, String[] values,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory)
-			throws Exception {
-		List<Object> objects=Lists.newArrayList();
-		for(String value:values){
-			Object object=this.getValue(clazz, name, value, webRequest, binderFactory);
-			if(object!=null){
-				objects.add(object);
-			}
-		}
-		return objects;
-		
-	}
-
-	private Table<Operation, String, Object> getTable(Filter filter,
-			Class<?> clazz, NativeWebRequest webRequest,
-			WebDataBinderFactory binderFactory) throws Exception {
-		Table<Operation, String, Object> table = HashBasedTable.create();
-		
-		EnumMap<Operation, Map<String, String>> unitaryOperations = filter
-				.getUnitaries();
-		for (Entry<Operation, Map<String, String>> operationEntry : unitaryOperations
-				.entrySet()) {
-			Operation operation = operationEntry.getKey();
-			for (Entry<String, String> field : operationEntry.getValue()
-					.entrySet()) {
-				String name = field.getKey();
-				Object value = this.getValue(clazz, name, field.getValue(),
-						webRequest, binderFactory);
-				if(value!=null){
-					table.put(operation, name, value);
-				}
-				
-
-			}
-		}
-		
-		EnumMap<Operation, Map<String, String[]>> polybasicOoperations = filter
-				.getPolybasics();
-		for (Entry<Operation, Map<String, String[]>> operationEntry : polybasicOoperations
-				.entrySet()) {
-			Operation operation = operationEntry.getKey();
-			for (Entry<String, String[]> fileds : operationEntry.getValue()
-					.entrySet()) {
-				String name = fileds.getKey();
-				List<Object> values = this.getValue(clazz, name,  fileds.getValue(), webRequest, binderFactory);
-				if (values.size() > 0) {
-					table.put(operation, name, values.toArray());
-				}
-
-			}
-		}
-		return table;
 	}
 
 	private Path<T> getPath(Root<T> root, String fieldName) {
@@ -191,5 +96,102 @@ public class FilterMethodArgumentResolver<T> implements
 
 		};
 		return specification;
+	}
+
+	private Table<Operation, String, Object> getTable(Filter filter,
+			Class<?> clazz, NativeWebRequest webRequest,
+			WebDataBinderFactory binderFactory) throws Exception {
+		Table<Operation, String, Object> table = HashBasedTable.create();
+
+		EnumMap<Operation, Map<String, String>> unitaryOperations = filter
+				.getUnitaries();
+		for (Entry<Operation, Map<String, String>> operationEntry : unitaryOperations
+				.entrySet()) {
+			Operation operation = operationEntry.getKey();
+			for (Entry<String, String> field : operationEntry.getValue()
+					.entrySet()) {
+				String name = field.getKey();
+				Object value = this.getValue(clazz, name, field.getValue(),
+						webRequest, binderFactory);
+				if (value != null) {
+					table.put(operation, name, value);
+				}
+
+			}
+		}
+
+		EnumMap<Operation, Map<String, String[]>> polybasicOoperations = filter
+				.getPolybasics();
+		for (Entry<Operation, Map<String, String[]>> operationEntry : polybasicOoperations
+				.entrySet()) {
+			Operation operation = operationEntry.getKey();
+			for (Entry<String, String[]> fileds : operationEntry.getValue()
+					.entrySet()) {
+				String name = fileds.getKey();
+				List<Object> values = this.getValue(clazz, name,
+						fileds.getValue(), webRequest, binderFactory);
+				if (values.size() > 0) {
+					table.put(operation, name, values.toArray());
+				}
+
+			}
+		}
+		return table;
+	}
+
+	private Object getValue(Class<?> clazz, String name, String value,
+			NativeWebRequest webRequest, WebDataBinderFactory binderFactory)
+			throws Exception {
+
+		if (StringUtils.isBlank(value)) {
+			return null;
+		}
+
+		Object target = BeanUtils.instantiateClass(clazz);
+		WebDataBinder webDataBinder = binderFactory.createBinder(webRequest,
+				target, clazz.getName());
+		MutablePropertyValues propertyValues = new MutablePropertyValues();
+		propertyValues.add(name, value);
+		webDataBinder.bind(propertyValues);
+		return PropertyUtils.getNestedProperty(target, name);
+	}
+
+	private List<Object> getValue(Class<?> clazz, String name, String[] values,
+			NativeWebRequest webRequest, WebDataBinderFactory binderFactory)
+			throws Exception {
+		List<Object> objects = Lists.newArrayList();
+		for (String value : values) {
+			Object object = this.getValue(clazz, name, value, webRequest,
+					binderFactory);
+			if (object != null) {
+				objects.add(object);
+			}
+		}
+		return objects;
+
+	}
+
+	@Override
+	public Object resolveArgument(MethodParameter parameter,
+			ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
+			WebDataBinderFactory binderFactory) throws Exception {
+
+		Filter filter = bindFilterFromRequest(webRequest, binderFactory);
+
+		Search search = parameter.getParameterAnnotation(Search.class);
+		Class<?> clazz = search.value();
+
+		Table<Operation, String, Object> table = this.getTable(filter, clazz,
+				webRequest, binderFactory);
+
+		Specification<?> specification = getSpecification(table);
+
+		return specification;
+	}
+
+	@Override
+	public boolean supportsParameter(MethodParameter parameter) {
+		return ClassUtils.isAssignable(parameter.getParameterType(),
+				Specification.class);
 	}
 }

@@ -31,37 +31,32 @@ public class ReplyerConfig {
 		lastReplyer.setSentContent(sentContent);
 		return lastReplyer;
 	}
-	
+
 	@Bean
-	public SubscribeReplyer subscribeReplyer() {
-		SubscribeReplyer sbscribeReplyer = new SubscribeReplyer();
-		TextSentContent sentContent = new TextSentContent();
-		sentContent.setContent("Hello亲～我是小细～ Systema细齿洁是狮王旗下专业的牙龈护理品牌,为您带来最细致入微的关怀呵护。感谢您关注小细！小细会定期发送专属的免费试用、新品信息、促销活动及牙龈健康小贴士！回复“测试”，开启牙齿健康小诊断，了解你的牙齿问题！还有更多功能等你来发现！");
-		sbscribeReplyer.setSentContent(sentContent);
-		return sbscribeReplyer;
+	public MessageSender messageSender(ReplyerChain replyerChain) {
+		MessageSender messageSender = new MessageSender();
+		messageSender.setReplyerChain(replyerChain);
+		messageSender.setWechatId(appProperties.getWecahtId());
+		return messageSender;
 	}
 
 	@Bean
-	public TextPropertiesReplyer textPropertiesReplyer() {
-		TextPropertiesReplyer propertiesReplyer = new TextPropertiesReplyer();
-		return propertiesReplyer;
-	}
-
-	@Bean
-	public NewsPropertiesReplyer newsPropertiesReplyer() throws FileNotFoundException, IOException {
+	public NewsPropertiesReplyer newsPropertiesReplyer()
+			throws FileNotFoundException, IOException {
 		NewsPropertiesReplyer propertiesReplyer = new NewsPropertiesReplyer();
 		return propertiesReplyer;
 	}
 
-
 	@Bean
-	public ReplyerChain replyerChain(NewsPropertiesReplyer newsPropertiesReplyer,
-			TextPropertiesReplyer textPropertiesReplyer,SubscribeReplyer subscribeReplyer, LastReplyer lastReplyer) {
+	public ReplyerChain replyerChain(
+			NewsPropertiesReplyer newsPropertiesReplyer,
+			TextPropertiesReplyer textPropertiesReplyer,
+			SubscribeReplyer subscribeReplyer, LastReplyer lastReplyer) {
 		ReplyerChain replyerChain = new ReplyerChain();
-		
-		ActivityReplyer activityReplyer=new ActivityReplyer(appProperties);
+
+		ActivityReplyer activityReplyer = new ActivityReplyer(appProperties);
 		replyerChain.addCustomReplyer(activityReplyer);
-		
+
 		replyerChain.setNewsPropertiesReplyer(newsPropertiesReplyer);
 		replyerChain.setTextPropertiesReplyer(textPropertiesReplyer);
 		replyerChain.setSubscribeReplyer(subscribeReplyer);
@@ -70,10 +65,18 @@ public class ReplyerConfig {
 	}
 
 	@Bean
-	public MessageSender messageSender(ReplyerChain replyerChain) {
-		MessageSender messageSender = new MessageSender();
-		messageSender.setReplyerChain(replyerChain);
-		messageSender.setWechatId(appProperties.getWecahtId());
-		return messageSender;
+	public SubscribeReplyer subscribeReplyer() {
+		SubscribeReplyer sbscribeReplyer = new SubscribeReplyer();
+		TextSentContent sentContent = new TextSentContent();
+		sentContent
+				.setContent("Hello亲～我是小细～ Systema细齿洁是狮王旗下专业的牙龈护理品牌,为您带来最细致入微的关怀呵护。感谢您关注小细！小细会定期发送专属的免费试用、新品信息、促销活动及牙龈健康小贴士！回复“测试”，开启牙齿健康小诊断，了解你的牙齿问题！还有更多功能等你来发现！");
+		sbscribeReplyer.setSentContent(sentContent);
+		return sbscribeReplyer;
+	}
+
+	@Bean
+	public TextPropertiesReplyer textPropertiesReplyer() {
+		TextPropertiesReplyer propertiesReplyer = new TextPropertiesReplyer();
+		return propertiesReplyer;
 	}
 }

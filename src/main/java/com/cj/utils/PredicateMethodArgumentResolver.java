@@ -17,57 +17,62 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-public class PredicateMethodArgumentResolver implements HandlerMethodArgumentResolver {
+public class PredicateMethodArgumentResolver implements
+		HandlerMethodArgumentResolver {
 
-	
-	
-	private static final String PREDICATE_PARAMETER_NAME="filter";
-	private static final String PREDICATE_VALUE_SEPERATOR=",";
-	
-	
-  @Override public boolean supportsParameter(MethodParameter parameter) {
-    return ClassUtils.isAssignable(parameter.getParameterType(), Predicate.class);
-  }
+	private static final String PREDICATE_PARAMETER_NAME = "filter";
+	private static final String PREDICATE_VALUE_SEPERATOR = ",";
 
-  @Override
-  public Object resolveArgument(MethodParameter parameter,
-                                ModelAndViewContainer mavContainer,
-                                NativeWebRequest webRequest,
-                                WebDataBinderFactory binderFactory) throws Exception {
-	  Specifications specifications=Specifications.where(null);
-	  HttpServletRequest request = (HttpServletRequest)webRequest.getNativeRequest();
-	  String[] filters=request.getParameterValues(PREDICATE_PARAMETER_NAME);
-	    for(String filter:filters){
-	    	String[] strs=filter.split(PREDICATE_VALUE_SEPERATOR);
-	    	if (strs.length != 3) {
-				throw new IllegalArgumentException(filter + " is not a valid search filter formate");
+	@Override
+	public Object resolveArgument(MethodParameter parameter,
+			ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
+			WebDataBinderFactory binderFactory) throws Exception {
+		Specifications specifications = Specifications.where(null);
+		HttpServletRequest request = (HttpServletRequest) webRequest
+				.getNativeRequest();
+		String[] filters = request.getParameterValues(PREDICATE_PARAMETER_NAME);
+		for (String filter : filters) {
+			String[] strs = filter.split(PREDICATE_VALUE_SEPERATOR);
+			if (strs.length != 3) {
+				throw new IllegalArgumentException(filter
+						+ " is not a valid search filter formate");
 			}
-	    	for(String str:strs){
-	    		if(str.length()==0){
-	    			throw new IllegalArgumentException(filter + " is not a valid search filter formate");
-	    		}
-	    	}
-	    	final String fieldName=strs[0];
-	    	final Operator operator = Operator.valueOf(strs[1]);
-	    	final String value=strs[2];
+			for (String str : strs) {
+				if (str.length() == 0) {
+					throw new IllegalArgumentException(filter
+							+ " is not a valid search filter formate");
+				}
+			}
+			final String fieldName = strs[0];
+			final Operator operator = Operator.valueOf(strs[1]);
+			final String value = strs[2];
 
-	    	if(operator==null){
-	    		throw new IllegalArgumentException(filter + " is not a valid search filter formate");
-	    	}
-	    	
-	    	Specification specification=new  Specification(){
+			if (operator == null) {
+				throw new IllegalArgumentException(filter
+						+ " is not a valid search filter formate");
+			}
+
+			Specification specification = new Specification() {
 				@Override
-				public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder criteriaBuilder) {
+				public Predicate toPredicate(Root root, CriteriaQuery query,
+						CriteriaBuilder criteriaBuilder) {
 					String[] names = StringUtils.split(fieldName, ".");
 					Path path = root.get(names[0]);
 					for (int i = 1; i < names.length; i++) {
 						path = path.get(names[i]);
 					}
-					Predicate predicate=operator.predicate(path, value, criteriaBuilder);
-					return predicate; 	
+					Predicate predicate = operator.predicate(path, value,
+							criteriaBuilder);
+					return predicate;
 				}
-	    	};
-	    }
+			};
+		}
 		return specifications;
-  	}
+	}
+
+	@Override
+	public boolean supportsParameter(MethodParameter parameter) {
+		return ClassUtils.isAssignable(parameter.getParameterType(),
+				Predicate.class);
+	}
 }

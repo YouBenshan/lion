@@ -12,6 +12,7 @@ import com.cj.domain.received.EventReceivedMessage;
 public interface EventReceivedMessageRepository extends
 		JpaRepository<EventReceivedMessage, Long>,
 		JpaSpecificationExecutor<EventReceivedMessage> {
-	
-	Page<EventReceivedMessage> findByEventAndCreateTimeGreaterThan(String event, int createTime, Pageable pageable);
+
+	Page<EventReceivedMessage> findByEventAndCreateTimeGreaterThan(
+			String event, int createTime, Pageable pageable);
 }

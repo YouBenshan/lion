@@ -20,33 +20,33 @@ import com.cj.lion.repository.StudentInfoRepository;
 @Controller
 @RequestMapping(value = "/user")
 public class StudentsController {
-	public static final String FINISH_PAGE="/resources/site/personalFinish.html";
-	
+	public static final String FINISH_PAGE = "/resources/site/personalFinish.html";
+
 	@Autowired
 	private StudentInfoRepository studentInfoRepository;
-	
-	 @Autowired
+
+	@Autowired
 	ScheduleStudentPic scheduleStudentPic;
-	
+
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET)
 	public String infoForm() {
 		return "user/studentInfo";
 	}
-	
+
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.POST)
 	public String infoSave(@Valid StudentInfo info, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "/user/studentInfo?other"+info.getWechatId();
+			return "/user/studentInfo?other" + info.getWechatId();
 		}
 		studentInfoRepository.save(info);
-		return "redirect:"+FINISH_PAGE;
+		return "redirect:" + FINISH_PAGE;
 	}
-	
+
 	@RequestMapping("/studentPic")
 	public String studentPic() throws Exception {
 		return "user/studentPic";
 	}
-	
+
 	@RequestMapping("/syncStudentPic")
 	public String syncStudentPic() throws Exception {
 		scheduleStudentPic.syncStudentPic();

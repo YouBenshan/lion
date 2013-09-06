@@ -5,12 +5,13 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ActiveInfo{
+public class ActiveInfo {
+	private String other;
+	private long mount;
+
 	public ActiveInfo(String other, long mount) {
 		super();
 		this.other = other;
 		this.mount = mount;
 	}
-	private String other;
-	private long mount;
 }

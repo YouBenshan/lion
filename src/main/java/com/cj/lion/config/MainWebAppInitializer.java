@@ -11,8 +11,8 @@ import com.cj.config.RootConfig;
 import com.cj.web.config.WebMvcConfig;
 
 public class MainWebAppInitializer extends
-		AbstractAnnotationConfigDispatcherServletInitializer {	
-	
+		AbstractAnnotationConfigDispatcherServletInitializer {
+
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] { RootConfig.class, LionRootConfig.class };
@@ -20,12 +20,7 @@ public class MainWebAppInitializer extends
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { WebMvcConfig.class, LionWebMvcConfig.class};
-	}
-
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new Class<?>[] { WebMvcConfig.class, LionWebMvcConfig.class };
 	}
 
 	@Override
@@ -36,8 +31,13 @@ public class MainWebAppInitializer extends
 
 		OpenEntityManagerInViewFilter openEntityManagerInViewFilter = new OpenEntityManagerInViewFilter();
 
-		return new Filter[] { characterEncodingFilter,new HiddenHttpMethodFilter(),
-				openEntityManagerInViewFilter};
+		return new Filter[] { characterEncodingFilter,
+				new HiddenHttpMethodFilter(), openEntityManagerInViewFilter };
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		return new String[] { "/" };
 	}
 
 }

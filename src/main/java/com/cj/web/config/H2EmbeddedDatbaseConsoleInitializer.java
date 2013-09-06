@@ -8,11 +8,11 @@ import org.h2.server.web.WebServlet;
 import org.springframework.web.WebApplicationInitializer;
 
 /**
- * loads the <A href="http://127.0.0.1:8080/{projectName}/h2/">web-based H2 database
- * console</A>.
+ * loads the <A href="http://127.0.0.1:8080/{projectName}/h2/">web-based H2
+ * database console</A>.
  * <p/>
- * To access the database for this application, use the JDBC URI {@code
- * jdbc:h2:mem:$ app.properties.database.name}}.
+ * To access the database for this application, use the JDBC URI
+ * {@code jdbc:h2:mem:$ app.properties.database.name} .
  */
 public class H2EmbeddedDatbaseConsoleInitializer implements
 		WebApplicationInitializer {

@@ -49,6 +49,19 @@ public class JpaAuthorizingRealm extends AuthorizingRealm {
 	}
 
 	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(
+			AuthenticationToken token) throws AuthenticationException {
+		Account account = accountRepository
+				.findByUsername(((UsernamePasswordToken) token).getUsername());
+		if (account != null) {
+			return new SimpleAuthenticationInfo(account.getId(),
+					account.getPassword(), getName());
+		} else {
+			return null;
+		}
+	}
+
+	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
 		Long accountId = (Long) principals.fromRealm(getName()).iterator()
@@ -61,19 +74,6 @@ public class JpaAuthorizingRealm extends AuthorizingRealm {
 				info.addStringPermissions(role.getPermissionsAsStringSet());
 			}
 			return info;
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
-			AuthenticationToken token) throws AuthenticationException {
-		Account account = accountRepository
-				.findByUsername(((UsernamePasswordToken) token).getUsername());
-		if (account != null) {
-			return new SimpleAuthenticationInfo(account.getId(),
-					account.getPassword(), getName());
 		} else {
 			return null;
 		}

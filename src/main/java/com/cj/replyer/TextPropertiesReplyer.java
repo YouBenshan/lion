@@ -11,11 +11,11 @@ import com.cj.utils.PropertiesUtil;
 public class TextPropertiesReplyer implements Replyer {
 	private Properties properties;
 	private final static String propertiesFilePath = "/textReply.properties";
-	
+
 	public TextPropertiesReplyer() {
 		this(propertiesFilePath);
 	}
-	
+
 	public TextPropertiesReplyer(String propertiesFilePath) {
 		properties = PropertiesUtil.read(propertiesFilePath);
 	}

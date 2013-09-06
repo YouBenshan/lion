@@ -20,26 +20,21 @@ import com.cj.utils.query.FilterMethodArgumentResolver;
 @ComponentScan(basePackages = { "com.cj.web" })
 @EnableWebMvc
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-	
+
 	@Override
 	public void addArgumentResolvers(
 			List<HandlerMethodArgumentResolver> argumentResolvers) {
 		super.addArgumentResolvers(argumentResolvers);
 		argumentResolvers.add(new PagingAndSortingMethodArgumentResolver());
 		argumentResolvers.add(new FilterMethodArgumentResolver());
-		
+
 	}
 
-
-	@Bean
-	public InternalResourceViewResolver internalResourceViewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix(".jsp");
-		return resolver;
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations(
+				"/resources/");
 	}
-
-
 
 	@Override
 	public void configureMessageConverters(
@@ -47,9 +42,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		converters.add(new MappingJackson2HttpMessageConverter());
 	}
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"/resources/");
+	@Bean
+	public InternalResourceViewResolver internalResourceViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+		return resolver;
 	}
 }

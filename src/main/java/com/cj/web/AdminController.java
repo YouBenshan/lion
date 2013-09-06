@@ -29,55 +29,58 @@ import com.cj.utils.query.Search;
 @Slf4j
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private ReceivedMessageRepository receivedMessageRepository;
-	
+
 	@Autowired
 	private EventReceivedMessageRepository eventReceivedMessageRepository;
-	
+
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin() {
 		return "admin";
 	}
-	
-	@RequestMapping("/template/**")
-	public String templates(HttpServletRequest request){
-		String uri=request.getRequestURI();
-		return uri.substring(uri.indexOf("/template/"));
+
+	@RequestMapping(value = "/admin/eventReceivedMessage/countSubscribe", method = RequestMethod.GET)
+	public @ResponseBody
+	Page<EventReceivedMessage> countSubscribe(Pageable pageable) {
+		int OneDayBefore = (int) (new Date().getTime() / 1000) - 10 * 24 * 60
+				* 60;
+		return eventReceivedMessageRepository
+				.findByEventAndCreateTimeGreaterThan(
+						EventReceivedMessage.SUBSCRIBE, OneDayBefore, pageable);
 	}
 
 	@RequestMapping(value = "/admin/receivedMessage", method = RequestMethod.GET)
 	public @ResponseBody
 	Page<ReceivedMessage> receivedMessage(Pageable pageable) {
-		log.info(pageable+"");
-		Page<ReceivedMessage> result = receivedMessageRepository.findAll(pageable);
+		log.info(pageable + "");
+		Page<ReceivedMessage> result = receivedMessageRepository
+				.findAll(pageable);
 		return result;
 	}
 
-
-	
-	@RequestMapping(value = "/admin/receivedMessage/search", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	@RequestMapping(value = "/admin/receivedMessage/search", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE })
 	public @ResponseBody
-	Page<ReceivedMessage> search(@Search(ReceivedMessage.class) Specification<ReceivedMessage> specification,Pageable pageable){
+	Page<ReceivedMessage> search(
+			@Search(ReceivedMessage.class) Specification<ReceivedMessage> specification,
+			Pageable pageable) {
 
-		Page<ReceivedMessage> result = receivedMessageRepository.findAll(specification, pageable);
+		Page<ReceivedMessage> result = receivedMessageRepository.findAll(
+				specification, pageable);
 		return result;
 	}
-	
-	@RequestMapping(value = "/admin/eventReceivedMessage/countSubscribe", method = RequestMethod.GET)
-	public @ResponseBody
-	Page<EventReceivedMessage> countSubscribe(Pageable pageable) {
-		int OneDayBefore= (int) (new Date().getTime()/1000) -10*24*60*60;
-		return eventReceivedMessageRepository.findByEventAndCreateTimeGreaterThan(EventReceivedMessage.SUBSCRIBE, OneDayBefore , pageable);
+
+	@RequestMapping("/template/**")
+	public String templates(HttpServletRequest request) {
+		String uri = request.getRequestURI();
+		return uri.substring(uri.indexOf("/template/"));
 	}
-	
+
 	@RequestMapping(value = "/admin/receivedMessage/topActive", method = RequestMethod.GET)
 	public @ResponseBody
 	Page<ActiveInfo> topActive(Pageable pageable) {
 		return receivedMessageRepository.findActive(pageable);
 	}
-	
 
-	
 }

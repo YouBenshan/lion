@@ -35,10 +35,39 @@ public class SecurityController {
 
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginForm(@ModelAttribute LoginCommand command) {
-		return "login";
+
+	@RequestMapping("/initData")
+	public String initData() {
+		try {
+			Set<Permission> permissions = new HashSet<Permission>();
+			permissions.add(Permission.Profile_Role_A);
+			permissions.add(Permission.Profile_Role_D);
+
+			Role admin = new Role();
+			admin.setName("admin");
+			admin.setPermissions(permissions);
+			roleRepository.save(admin);
+
+			Role user = new Role();
+			user.setName("user");
+			user.setPermissions(new HashSet<Permission>());
+			roleRepository.save(user);
+
+			Set<Role> roles = new HashSet<Role>();
+			roles.add(admin);
+			roles.add(user);
+
+			Account account = new Account();
+			account.setUsername(appProperties.getUsername());
+			account.setPassword(appProperties.getPassword());
+			account.setEmail("u122769@compuware.com");
+			account.setRoles(roles);
+			accountHelper.createAccount(account);
+
+		} catch (Exception e) {
+			log.info("data havd been init before");
+		}
+		return "redirect: /login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -62,43 +91,14 @@ public class SecurityController {
 		return "redirect:/admin";
 	}
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginForm(@ModelAttribute LoginCommand command) {
+		return "login";
+	}
+
 	@RequestMapping("/logout")
 	public String logout() {
 		SecurityUtils.getSubject().logout();
 		return "redirect:/admin";
-	}
-	@RequestMapping("/initData")
-	public String initData(){
-		try{
-		Set<Permission> permissions = new HashSet<Permission>();
-		permissions.add(Permission.Profile_Role_A);
-		permissions.add(Permission.Profile_Role_D);
-
-		Role admin = new Role();
-		admin.setName("admin");
-		admin.setPermissions(permissions);
-		roleRepository.save(admin);
-
-		Role user = new Role();
-		user.setName("user");
-		user.setPermissions(new HashSet<Permission>());
-		roleRepository.save(user);
-
-		Set<Role> roles = new HashSet<Role>();
-		roles.add(admin);
-		roles.add(user);
-
-		Account account = new Account();
-		account.setUsername(appProperties.getUsername());
-		account.setPassword(appProperties.getPassword());
-		account.setEmail("u122769@compuware.com");
-		account.setRoles(roles);
-		accountHelper.createAccount(account);
-		
-	
-		}catch(Exception e){
-			log.info("data havd been init before");
-		}
-		return "redirect: /login";
 	}
 }
