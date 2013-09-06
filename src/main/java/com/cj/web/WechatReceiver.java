@@ -71,10 +71,10 @@ public class WechatReceiver {
 	public void reply(ServletRequest request, InputStream inputStream,
 			Writer writer) throws ParserConfigurationException, SAXException,
 			IOException {
-		String ip = request.getRemoteAddr();
-		if (!ips.contains(ip)) {
-			return;
-		}
+//		String ip = request.getRemoteAddr();
+//		if (!ips.contains(ip)) {
+//			return;
+//		}
 
 		ReceivedMessage receivedMessage = ReceivedMessageParser
 				.parse(inputStream);
