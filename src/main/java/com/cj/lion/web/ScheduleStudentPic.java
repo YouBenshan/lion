@@ -48,12 +48,11 @@ public class ScheduleStudentPic {
 		Page<StudentInfo> studentInfos;
 		do{
 			studentInfos=studentInfoRepository.findByStoredIsFalse(pageable);
-			
 			for(StudentInfo studentInfo:studentInfos){
 				this.syncPic(studentInfo);
 			}
 		}while(studentInfos.getNumberOfElements()>0);
-		
+		log.info("finished sync Student's pictures");
 	}
 	
 	
@@ -68,6 +67,7 @@ public class ScheduleStudentPic {
 				InputStream inputStream=new URL(url).openStream();
 				Path path=getStoredLink(studentInfo.getWechatId());
 				Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+				inputStream.close();
 			} catch (IOException e) {
 				log.info(e.getMessage());
 			}
