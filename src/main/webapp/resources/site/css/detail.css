@@ -452,7 +452,6 @@ cursor:pointer;
 .about_box .block1 p{margin-bottom:6px;padding:0 2px 0 12px;}
 .about_box .block1 .p1{padding-top:12px;}
 .about_box .block1 strong{background:#fe0466;color:#fff;font-weight:400;margin:0 1px 0 0;padding:0 0 0 3px;}
-.only3 .productTitle h1{width:300px; height:30px; background:url(../img/producttitle.png) 0 -30px no-repeat; text-indent:-9999px; overflow:hidden; }
 .about_box .bass_img {padding-top:6px;margin-bottom:10px;display:block;position:relative;left:10px;overflow:hidden;zoom:1;width:98%;
                      -moz-border-radius: 10px; 
                       border-radius: 10px;
@@ -465,4 +464,27 @@ cursor:pointer;
 	font-weight:normal;
 	height:125px;font-weight:normal;line-height:16px;padding:0;
 	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
+}
+
+#headerImg{width: 100%;}
+.cartIco {
+display: inline-block;
+width: 24px;
+height: 19px;
+margin-right: 8px;
+background: url(../img/product/small.png) no-repeat;
+background-position: -0px -41px;
+vertical-align: -4px;
+background-size: 30px auto;
+}
+.cartBtnLong {
+float:right;
+display: inline-block;
+height: 30px;
+line-height: 30px;
+padding: 0 15px;
+background-color: #66CCFF;
+border-radius: 4px;
+margin-right: 10px;
+color: #fff;
 }
