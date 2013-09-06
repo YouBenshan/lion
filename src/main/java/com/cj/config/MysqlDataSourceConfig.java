@@ -17,7 +17,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @PropertySource("/mysqlDataSource.properties")
 @Configuration
-@Profile({ "default", "product" })
+@Profile({  "product" })
 class MysqlDataSourceConfig {
 
 	@Autowired

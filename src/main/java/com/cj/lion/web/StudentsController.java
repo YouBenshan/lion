@@ -4,9 +4,6 @@ import javax.validation.Valid;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -29,10 +26,7 @@ public class StudentsController {
 	private StudentInfoRepository studentInfoRepository;
 	
 	 @Autowired
-	 JobLauncher jobLauncher;
-
-	    @Autowired
-	    Job job;
+	ScheduleStudentPic scheduleStudentPic;
 	
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET)
 	public String infoForm() {
@@ -53,10 +47,10 @@ public class StudentsController {
 		return "user/studentPic";
 	}
 	
-	@RequestMapping("/readPicFromWechat")
-	public String readPicFromWechat() throws Exception {
-		jobLauncher.run(job, new JobParameters());
-		return "redirect: /admin";
+	@RequestMapping("/syncStudentPic")
+	public String syncStudentPic() throws Exception {
+		scheduleStudentPic.syncStudentPic();
+		return "redirect:/admin";
 	}
 
 }
