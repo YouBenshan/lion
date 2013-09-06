@@ -75,10 +75,11 @@
 		
         function judgeSkills(userAnswers) {
 			var answersString = userAnswers.join('');
-            if (answersString == 111) return config.resultComments.perfect;
-            else if (answersString = 222) return config.resultComments.excellent;
-            else if (answersString = 333) return config.resultComments.good;
-            else if (answersString = 444) return config.resultComments.average;
+			alert(userAnswers);
+            if ((userAnswers==1)||(userAnswers==2)) return config.resultComments.perfect;
+            if ((userAnswers==7)||(userAnswers==8)) return config.resultComments.excellent;
+            else if (answersString == 333) return config.resultComments.good;
+            else if (answersString == 444) return config.resultComments.average;
             else if (score > 35) return config.resultComments.bad;
             else if (score > 20) return config.resultComments.poor;
             else return config.resultComments.worst

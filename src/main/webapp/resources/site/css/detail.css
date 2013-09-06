@@ -446,13 +446,13 @@ cursor:pointer;
 
 .about_box{font:13px/23px 'Microsoft YaHei';color:#666;}
 .titleName{font:18px/28px 'Microsoft YaHei';color:#666;}
-.about_box .about_img2{padding-top:6px;display:block;position:relative;left:25px;}
-.about_box .block1 p,
-.about_box .about_img2{overflow:hidden;zoom:1;}
-.about_box .block1 p{margin-bottom:6px;padding:0 2px 0 12px;}
-.about_box .block1 .p1{padding-top:12px;}
+.about_img2{padding-top:6px;display:block;position:relative;left:25px;}
+.block1 p,
+.about_img2{overflow:hidden;zoom:1;}
+.block1 p{margin-bottom:6px;padding:0 2px 0 12px;}
+.block1 .p1{padding-top:12px;}
 .about_box .block1 strong{background:#fe0466;color:#fff;font-weight:400;margin:0 1px 0 0;padding:0 0 0 3px;}
-.about_box .bass_img {padding-top:6px;margin-bottom:10px;display:block;position:relative;left:10px;overflow:hidden;zoom:1;width:98%;
+.bass_img {padding-top:6px;margin-bottom:10px;display:block;position:relative;left:10px;overflow:hidden;zoom:1;width:98%;
                      -moz-border-radius: 10px; 
                       border-radius: 10px;
 					  -webkit-border-radius:10px;}
