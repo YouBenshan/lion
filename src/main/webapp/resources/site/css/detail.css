@@ -466,7 +466,10 @@ cursor:pointer;
 	max-width:100%;text-overflow:ellipsis;white-space:nowrap !important;white-space:normal;overflow:hidden;
 }
 
-#headerImg{width: 100%;}
+#headerImg{width: 100%;
+          -moz-border-radius: 6px; 
+               border-radius: 6px;
+	       -webkit-border-radius:6px;}
 .cartIco {
 display: inline-block;
 width: 24px;
