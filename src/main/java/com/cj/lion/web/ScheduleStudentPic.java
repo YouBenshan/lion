@@ -45,13 +45,15 @@ public class ScheduleStudentPic {
 	public void syncStudentPic() {
 		log.info("sync Student's pictures");
 		Pageable pageable=new PageRequest(0,20);
-		Page<StudentInfo> studentInfos=studentInfoRepository.findByStoredIsFalse(pageable);
-		if(studentInfos.getNumberOfElements()==0){
-			return;
-		}
-		for(StudentInfo studentInfo:studentInfos){
-			this.syncPic(studentInfo);
-		}
+		Page<StudentInfo> studentInfos;
+		do{
+			studentInfos=studentInfoRepository.findByStoredIsFalse(pageable);
+			
+			for(StudentInfo studentInfo:studentInfos){
+				this.syncPic(studentInfo);
+			}
+		}while(studentInfos.getNumberOfElements()>0);
+		
 	}
 	
 	
