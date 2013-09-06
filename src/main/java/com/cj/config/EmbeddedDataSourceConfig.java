@@ -12,7 +12,7 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@Profile({"default","test" })
+@Profile({"test" })
 class EmbeddedDataSourceConfig {
 
 	@Autowired
@@ -34,6 +34,6 @@ class EmbeddedDataSourceConfig {
 	@Bean
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder().setName(appProperties
-				.getDatabaseName()).setType(EmbeddedDatabaseType.H2).addScript("classpath:org/springframework/batch/core/schema-h2.sql").build();
+				.getDatabaseName()).setType(EmbeddedDatabaseType.H2).build();
 	}
 }
