@@ -3,7 +3,7 @@ package com.cj.lion.web;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -57,10 +57,6 @@ public class ScheduleStudentPic {
 		}
 		pathString = pathString + File.separator + wechatId + ".jpg";
 		File file = new File(pathString);
-		if (!file.exists()) {
-			file.createNewFile();
-		}
-
 		Path path = file.toPath();
 		return path;
 	}
@@ -68,19 +64,21 @@ public class ScheduleStudentPic {
 	private void syncPic(StudentInfo studentInfo) {
 		List<ImageReceivedMessage> imageReceivedMessages = imageReceivedMessageRepository
 				.findByOtherOrderByCreateTimeDesc(studentInfo.getWechatId());
-		studentInfo.setStored(true);
-		studentInfoRepository.save(studentInfo);
+
 		if (imageReceivedMessages.size() > 0) {
 			String url = imageReceivedMessages.get(0).getPicUrl();
-			try {
-				InputStream inputStream = new URL(url).openStream();
+
+			URI u = URI.create(url);
+
+			try (InputStream in = u.toURL().openStream()) {
 				Path path = getStoredLink(studentInfo.getWechatId());
-				Files.copy(inputStream, path,
-						StandardCopyOption.REPLACE_EXISTING);
-				inputStream.close();
+				Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
+				studentInfo.setStored(true);
+				studentInfoRepository.save(studentInfo);
 			} catch (IOException e) {
 				log.info(e.getMessage());
 			}
+
 		}
 
 	}
