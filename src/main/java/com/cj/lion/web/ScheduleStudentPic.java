@@ -42,7 +42,7 @@ public class ScheduleStudentPic {
     private ImageReceivedMessageRepository imageReceivedMessageRepository;
 
 	@Scheduled(cron = "0 0 1-4 * * *")
-	public void syncStudentPic() throws IOException  {
+	public void syncStudentPic() {
 		log.info("sync Student's pictures");
 		Pageable pageable=new PageRequest(0,20);
 		Page<StudentInfo> studentInfos=studentInfoRepository.findByStoredIsFalse(pageable);
@@ -56,18 +56,21 @@ public class ScheduleStudentPic {
 	
 	
 	
-	private void syncPic(StudentInfo studentInfo) throws IOException {
+	private void syncPic(StudentInfo studentInfo) {
 		List<ImageReceivedMessage> imageReceivedMessages=imageReceivedMessageRepository.findByOtherOrderByCreateTimeDesc(studentInfo.getWechatId());
-		if(imageReceivedMessages.size()>0){
-			String url = imageReceivedMessages.get(0).getPicUrl();
-			InputStream inputStream=new URL(url).openStream();
-			
-			Path path=getStoredLink(studentInfo.getWechatId());
-			Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
-		}
-		
 		studentInfo.setStored(true);
 		studentInfoRepository.save(studentInfo);
+		if(imageReceivedMessages.size()>0){
+			String url = imageReceivedMessages.get(0).getPicUrl();
+			try {
+				InputStream inputStream=new URL(url).openStream();
+				Path path=getStoredLink(studentInfo.getWechatId());
+				Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				log.info(e.getMessage());
+			}
+		}
+		
 	}
 	
 	  private Path getStoredLink(String wechatId) throws IOException{
