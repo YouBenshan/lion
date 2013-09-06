@@ -4,8 +4,8 @@
         var defaults = {
             questions: null,
             twitterStatus: 'I scored {score}% on this awesome! Check it out!',
-            startText: '简单回答五个小问题既可了解你牙齿的问题，我们开始测试牙齿的健康吧！',
-            endText: '牙齿健康报告',
+            startText: '简单回答1个小问题既可了解你牙齿的问题，我们开始测试牙龈的健康吧！',
+            endText: '牙龈健康报告',
             splashImage: 'img/start.png',
             twitterImage: 'img/share.png',
             twitterUsername: 'jQuizzy',
@@ -74,15 +74,13 @@
         }
 		
         function judgeSkills(userAnswers) {
-			var answersString = userAnswers.join('');
-			alert(userAnswers);
-            if ((userAnswers==1)||(userAnswers==2)) return config.resultComments.perfect;
-            if ((userAnswers==7)||(userAnswers==8)) return config.resultComments.excellent;
-            else if (answersString == 333) return config.resultComments.good;
-            else if (answersString == 444) return config.resultComments.average;
-            else if (score > 35) return config.resultComments.bad;
-            else if (score > 20) return config.resultComments.poor;
-            else return config.resultComments.worst
+			//var answersString = userAnswers.join('');
+            if (userAnswers==1||userAnswers==2||userAnswers==3||userAnswers==4||userAnswers==5||userAnswers==6) 
+			    return config.resultComments.advice1;
+            else if (userAnswers==7||userAnswers==8) return config.resultComments.advice2;
+            else if (userAnswers==9) return config.resultComments.advice3;
+            else if (userAnswers==10) return config.resultComments.advice4;
+            else if (userAnswers==11||userAnswers==12) return config.resultComments.advice5;
         }
         progressKeeper.hide();
         notice.hide();
