@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue("event")
 public class EventReceivedMessage extends ReceivedMessage {
-	public static final String SUBSCRIBE="subscribe";
+	public static final String SUBSCRIBE = "subscribe";
 	private String event;
 	private String eventKey;
 }

@@ -37,10 +37,10 @@ import com.cj.utils.ReceivedMessageParser;
 public class WechatReceiver {
 	public final static String WECHAT_RECEIVER_URL = "/wechatReceiver";
 	private final Set<String> ips = new HashSet<String>();
-	
+
 	@Autowired
 	private AppProperties appProperties;
-	
+
 	@Autowired
 	private TencentIpRepository tencentIpRepository;
 
@@ -57,7 +57,7 @@ public class WechatReceiver {
 			@RequestParam String echostr) throws IOException {
 		String ip = request.getRemoteAddr();
 		if (validate(timestamp, nonce, signature)) {
-			if(!ips.contains(ip)){
+			if (!ips.contains(ip)) {
 				saveAndCache(ip);
 			}
 			writer.write(echostr);
@@ -67,26 +67,41 @@ public class WechatReceiver {
 		}
 	}
 
+	@PostConstruct
+	public void initIpCache() {
+		List<TencentIp> tencentIps = tencentIpRepository.findAll();
+		for (TencentIp tencentIp : tencentIps) {
+			ips.add(tencentIp.getIp());
+		}
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public void reply(ServletRequest request, InputStream inputStream,
 			Writer writer) throws ParserConfigurationException, SAXException,
 			IOException {
-		String ip = request.getRemoteAddr();
-		if (!ips.contains(ip)) {
-			return;
-		}
+		// String ip = request.getRemoteAddr();
+		// if (!ips.contains(ip)) {
+		// return;
+		// }
 
 		ReceivedMessage receivedMessage = ReceivedMessageParser
 				.parse(inputStream);
-		log.info(receivedMessage.getOther() + " " +receivedMessage.getCreateTime());
+		log.info(receivedMessage.getOther() + " "
+				+ receivedMessage.getCreateTime());
 
 		receivedMessageRepository.save(receivedMessage);
 
 		String sentMessage = messageSender.generate(receivedMessage);
 		writer.write(sentMessage);
 	}
-	
 
+	private void saveAndCache(String ip) {
+		ips.add(ip);
+		log.info(ip);
+		TencentIp tencentIp = new TencentIp();
+		tencentIp.setIp(ip);
+		tencentIpRepository.save(tencentIp);
+	}
 
 	private boolean validate(String timestamp, String nonce, String signature) {
 		Set<String> set = new TreeSet<String>();
@@ -102,21 +117,5 @@ public class WechatReceiver {
 		String s = new Sha1Hash(sb.toString()).toHex();
 		return signature.equals(s);
 	}
-	
-	private void saveAndCache(String ip){
-		ips.add(ip);
-		log.info(ip);
-		TencentIp tencentIp=new TencentIp();
-		tencentIp.setIp(ip);
-		tencentIpRepository.save(tencentIp);
-	}
-	
-	@PostConstruct
-	public void initIpCache(){
-		List<TencentIp> tencentIps=tencentIpRepository.findAll();
-		for(TencentIp tencentIp: tencentIps){
-			ips.add(tencentIp.getIp());
-		}
-	}
-	
+
 }

@@ -10,19 +10,21 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.cj.config.security.SecurityConfig;
 
-public class DataRestAndSecurityFilterInitializer implements WebApplicationInitializer{
+public class DataRestAndSecurityFilterInitializer implements
+		WebApplicationInitializer {
 
 	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
-		Dynamic dynamic= servletContext.addServlet("repositoryRest", new RepositoryRestExporterServlet());
+	public void onStartup(ServletContext servletContext)
+			throws ServletException {
+		Dynamic dynamic = servletContext.addServlet("repositoryRest",
+				new RepositoryRestExporterServlet());
 		dynamic.addMapping("/api/*");
-		
+
 		DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy(
 				SecurityConfig.SHIRO_FILTER_NAME);
-		//enable shiro
-		servletContext.addFilter("shiroFilter", delegatingFilterProxy).addMappingForUrlPatterns(null, false, "/*");
+		// enable shiro
+		servletContext.addFilter("shiroFilter", delegatingFilterProxy)
+				.addMappingForUrlPatterns(null, false, "/*");
 	}
-
-
 
 }

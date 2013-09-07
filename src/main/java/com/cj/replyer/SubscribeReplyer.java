@@ -7,7 +7,7 @@ import com.cj.domain.received.ReceivedMessage;
 import com.cj.domain.sent.SentContent;
 
 @Setter
-public class SubscribeReplyer implements Replyer{
+public class SubscribeReplyer implements Replyer {
 
 	private SentContent sentContent;
 
@@ -15,12 +15,11 @@ public class SubscribeReplyer implements Replyer{
 	public SentContent reply(ReceivedMessage receivedMessage) {
 		if (receivedMessage instanceof EventReceivedMessage) {
 			String event = ((EventReceivedMessage) receivedMessage).getEvent();
-			if(EventReceivedMessage.SUBSCRIBE.equalsIgnoreCase(event)){
+			if (EventReceivedMessage.SUBSCRIBE.equalsIgnoreCase(event)) {
 				return sentContent;
 			}
 		}
 		return null;
 	}
-
 
 }

@@ -17,7 +17,7 @@ public abstract class IdEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Version
-    private Integer version;
+	private Integer version;
 }

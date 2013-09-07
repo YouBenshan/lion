@@ -1,8 +1,5 @@
 package com.cj.config;
 
-
-
-
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -24,6 +21,33 @@ class MysqlDataSourceConfig {
 	private AppProperties appProperties;
 
 	@Bean
+	public DataSource dataSource(Environment env) {
+		BasicDataSource dataSource = new org.apache.commons.dbcp.BasicDataSource();
+		dataSource.setDriverClassName(env.getProperty("jdbc.driver").trim());
+		dataSource.setUrl(env.getProperty("jdbc.url").trim());
+		dataSource.setUsername(env.getProperty("jdbc.username").trim());
+		dataSource.setPassword(env.getProperty("jdbc.password").trim());
+		return dataSource;
+	}
+
+	// @Bean
+	// public DataSource dataSource(Environment env) {
+	// DataSource datasouce=new DataSource();
+	//
+	// datasouce.setDriverClassName("com.mysql.jdbc.Driver");
+	// datasouce.setUrl(env.getProperty("jdbc.url").trim());
+	// datasouce.setUsername(env.getProperty("jdbc.username").trim());
+	// datasouce.setPassword(env.getProperty("jdbc.password").trim());
+	// datasouce.setMaxActive(40);
+	// datasouce.setMaxIdle(5);
+	// datasouce.setDefaultAutoCommit(false);
+	// datasouce.setTimeBetweenEvictionRunsMillis(3600000);
+	// datasouce.setMinEvictableIdleTimeMillis(3600000);
+	//
+	// return datasouce;
+	// }
+
+	@Bean
 	public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
@@ -31,31 +55,4 @@ class MysqlDataSourceConfig {
 		adapter.setShowSql(true);
 		return adapter;
 	}
-
-//	@Bean
-//	public DataSource dataSource(Environment env) {
-//		DataSource datasouce=new DataSource();
-//		
-//		datasouce.setDriverClassName("com.mysql.jdbc.Driver");
-//		datasouce.setUrl(env.getProperty("jdbc.url").trim());
-//		datasouce.setUsername(env.getProperty("jdbc.username").trim());
-//		datasouce.setPassword(env.getProperty("jdbc.password").trim());
-//		datasouce.setMaxActive(40);
-//		datasouce.setMaxIdle(5);
-//		datasouce.setDefaultAutoCommit(false);
-//		datasouce.setTimeBetweenEvictionRunsMillis(3600000);
-//		datasouce.setMinEvictableIdleTimeMillis(3600000);
-//		
-//		return datasouce;
-//	}
-	
-	@Bean
-	  public DataSource dataSource(Environment env){
-		BasicDataSource dataSource = new org.apache.commons.dbcp.BasicDataSource();
-		dataSource.setDriverClassName(env.getProperty("jdbc.driver").trim());
-		dataSource.setUrl(env.getProperty("jdbc.url").trim());
-		dataSource.setUsername(env.getProperty("jdbc.username").trim());
-		dataSource.setPassword(env.getProperty("jdbc.password").trim());
-	    return dataSource;
-	  }
 }

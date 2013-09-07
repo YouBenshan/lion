@@ -16,7 +16,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EnableJpaRepositories(basePackages = {"com.cj.repository","com.cj.lion.repository"})
+@EnableJpaRepositories(basePackages = { "com.cj.repository",
+		"com.cj.lion.repository" })
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "com.cj.config" })
 @Configuration
@@ -26,7 +27,7 @@ public class RootConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
 			HibernateJpaVendorAdapter adapter, DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-		emf.setPackagesToScan("com.cj.domain","com.cj.lion.domain");
+		emf.setPackagesToScan("com.cj.domain", "com.cj.lion.domain");
 		emf.setDataSource(dataSource);
 		emf.setJpaVendorAdapter(adapter);
 		Map<String, String> jpaProperties = new HashMap<String, String>();

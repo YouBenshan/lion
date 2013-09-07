@@ -20,7 +20,7 @@
 		</div>
 	</header>
 	<div ng-view></div>
-	<li><a href="<c:url value='/user/readPicFromWechat'/>">从wechat服务器同步相片</a></li>
+	<li><a href="<c:url value='/user/syncStudentPic'/>">从wechat服务器同步相片</a></li>
 	<p>Nothing here {{1 + 2}}</p>
 	<script type="text/javascript"
 		src="<c:url value="/resources/js/vendor/jquery-2.0.3.js" />"></script>

@@ -19,14 +19,28 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SecurityConfig {
 
-	public static final String SHIRO_FILTER_NAME="shiroFilter";
-	
-	@Autowired
-	private JpaAuthorizingRealm jpaAuthorizingRealm;
+	public static final String SHIRO_FILTER_NAME = "shiroFilter";
+
+	@Bean
+	public static DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		return new DefaultAdvisorAutoProxyCreator();
+	}
 
 	@Bean
 	public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
+	}
+
+	@Autowired
+	private JpaAuthorizingRealm jpaAuthorizingRealm;
+
+	@Bean
+	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+			RealmSecurityManager sealmSecurityManager) {
+		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+		authorizationAttributeSourceAdvisor
+				.setSecurityManager(sealmSecurityManager);
+		return authorizationAttributeSourceAdvisor;
 	}
 
 	@Bean
@@ -37,17 +51,12 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	public static DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-		return new DefaultAdvisorAutoProxyCreator();
-	}
-
-	@Bean
 	@SneakyThrows
 	public AbstractShiroFilter shiroFilter(
 			RealmSecurityManager sealmSecurityManager) {
-		AbstractShiroFilter shiroFilter= (AbstractShiroFilter)this.shiroFilterFactoryBean(
-				sealmSecurityManager).getObject();
-		return  shiroFilter;
+		AbstractShiroFilter shiroFilter = (AbstractShiroFilter) this
+				.shiroFilterFactoryBean(sealmSecurityManager).getObject();
+		return shiroFilter;
 	}
 
 	private ShiroFilterFactoryBean shiroFilterFactoryBean(
@@ -70,14 +79,5 @@ public class SecurityConfig {
 		shiroFilterFactoryBean
 				.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
-	}
-
-	@Bean
-	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
-			RealmSecurityManager sealmSecurityManager) {
-		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-		authorizationAttributeSourceAdvisor
-				.setSecurityManager(sealmSecurityManager);
-		return authorizationAttributeSourceAdvisor;
 	}
 }

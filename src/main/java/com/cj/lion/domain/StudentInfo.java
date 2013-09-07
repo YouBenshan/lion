@@ -11,14 +11,14 @@ import com.cj.domain.IdEntity;
 @Setter
 @Getter
 @Entity
-public class StudentInfo extends IdEntity{
-	@Size(min=1)
+public class StudentInfo extends IdEntity {
+	@Size(min = 1)
 	private String wechatId;
-	@Size(min=1)
+	@Size(min = 1)
 	private String name;
-	@Size(min=1)
+	@Size(min = 1)
 	private String school;
-	@Size(min=1)
-	private String  mobile;
-	private boolean stored =false;
+	@Size(min = 1)
+	private String mobile;
+	private boolean stored = false;
 }

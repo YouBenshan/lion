@@ -26,13 +26,13 @@ public class AppProperties {
 
 	@Value("${H2database.name}")
 	private String databaseName;
-	
+
 	@Value("${site.base}")
 	private String siteBase;
-	
+
 	@Value("${account.username}")
 	private String username;
-	
+
 	@Value("${account.password}")
 	private String password;
 }

@@ -14,42 +14,43 @@ public class ReplyerChain implements Replyer {
 	private SubscribeReplyer subscribeReplyer;
 	private TextPropertiesReplyer textPropertiesReplyer;
 	private NewsPropertiesReplyer newsPropertiesReplyer;
-	
-	private final List<Replyer> customReplyers=new ArrayList<Replyer>();
-	public void addCustomReplyer(Replyer replyer){
+
+	private final List<Replyer> customReplyers = new ArrayList<Replyer>();
+
+	public void addCustomReplyer(Replyer replyer) {
 		customReplyers.add(replyer);
 	}
 
 	@Override
 	public SentContent reply(ReceivedMessage receivedMessage) {
-		SentContent sentContent=null;
-		for(Replyer replyer:customReplyers){
-			sentContent=replyer.reply(receivedMessage);
-			if(sentContent!=null){
+		SentContent sentContent = null;
+		for (Replyer replyer : customReplyers) {
+			sentContent = replyer.reply(receivedMessage);
+			if (sentContent != null) {
 				return sentContent;
 			}
 		}
 
-		if(newsPropertiesReplyer!=null){
-			sentContent= newsPropertiesReplyer.reply(receivedMessage);
+		if (newsPropertiesReplyer != null) {
+			sentContent = newsPropertiesReplyer.reply(receivedMessage);
 		}
 		if (sentContent != null) {
 			return sentContent;
 		}
-		if(textPropertiesReplyer!=null){
-			sentContent= textPropertiesReplyer.reply(receivedMessage);
+		if (textPropertiesReplyer != null) {
+			sentContent = textPropertiesReplyer.reply(receivedMessage);
 		}
 		if (sentContent != null) {
 			return sentContent;
 		}
-		if(subscribeReplyer!=null){
-			sentContent= subscribeReplyer.reply(receivedMessage);
+		if (subscribeReplyer != null) {
+			sentContent = subscribeReplyer.reply(receivedMessage);
 		}
 		if (sentContent != null) {
 			return sentContent;
 		}
-		if(lastReplyer!=null){
-			sentContent= lastReplyer.reply(receivedMessage);
+		if (lastReplyer != null) {
+			sentContent = lastReplyer.reply(receivedMessage);
 		}
 		return sentContent;
 	}

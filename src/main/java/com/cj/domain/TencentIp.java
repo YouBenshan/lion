@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class TencentIp extends IdEntity{
+public class TencentIp extends IdEntity {
 
 	private String ip;
 }
