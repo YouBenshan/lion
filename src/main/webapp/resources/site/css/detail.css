@@ -491,3 +491,28 @@ border-radius: 4px;
 margin-right: 10px;
 color: #fff;
 }
+/*ÑÀö¸»¤Àí*/
+#page{background-image:url(../img/care/main_bg2.png)}
+#content{background:#fff;margin: 0 auto}
+.sub_nav{height:30px;line-height:30px;padding:0 10px;color:#0055a5;background:#ddf1ff;margin:0 50px;font-family:simsun;}
+.sub_nav a{color:#0055a5;}
+.cont_foot{background:url(../img/care/main_bg3.png) no-repeat;height:35px;}
+.care_box{font:14px/24px 'Microsoft YaHei';padding:8px 2px 0 2px;color:#666;}
+.care_box h2{height:38px;background:url(../img/care/h2_bg.png) no-repeat;float:left;padding-bottom:14px;font-family:'Microsoft YaHei';}
+.care_box h2 span{background:url(../img/care/h2_bg.png) no-repeat right 0 ;float:left;padding-right:13px;position:relative;right:-13px;height:38px;line-height:38px;font-size:16px;color:#fff;font-weight:800;}
+.care_box .block_cont{clear:both;}
+.care_box .block11{padding-top:5px;overflow:hidden;zoom:1;background:url(../../img/care/cale.jpg) right  24px no-repeat;}
+.care_box .block11 .block_cont{clear:none;float:left;}
+.care_box .block11 li{line-height:30px; background:url(../img/care/list_image.jpg) no-repeat left 7px;display:block;padding-left:17px;}
+.care_box .block2{overflow:hidden;zoom:1;}
+.care_box .block2 img{float:left;margin:10px 10px 10px 10px;display:inline;}
+.care_box .block2 .block_cont{clear:none;float:left;min-width:300px;}
+.care_box .block2 li{line-height:30px;background:url(../img/care/list_image.jpg) no-repeat left 7px;display:block;padding-left:17px;float:left;width:130px;}
+.care_box .block3, .care_box .block4{overflow:hidden;zoom:1;padding-top:20px;}
+.care_box .block3 img, .care_box .block4 img{float:left;margin:10px 10px 5px 10px;}
+.care_box .block3 .block_cont, .care_box .block4 .block_cont{clear:none;float:left;min-width:280px;}
+.care_box .block4 .block_cont li span{background:url(../img/care/care_nu.jpg) no-repeat right 3px;padding-right:22px;float:left;}
+.care_box .block4 .block_cont li{padding:0 30px 12px 0;}
+.care_box .block4 .block_cont .no2{background-position:right -32px;}
+.care_box .block4 .block_cont .no3{background-position:right -63px;}
+.care_box .block4 .block_cont .no4{background-position:right -122px;}
