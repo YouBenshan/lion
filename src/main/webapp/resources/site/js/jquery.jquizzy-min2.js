@@ -4,7 +4,7 @@
         var defaults = {
             questions: null,
             twitterStatus: 'I scored {score}% on this awesome! Check it out!',
-            startText: '简单回答1个小问题既可了解你牙齿的问题，我们开始测试牙龈的健康吧！',
+            startText: '点击开始测试牙龈',
             endText: '牙龈健康报告',
             splashImage: 'img/start.png',
             twitterImage: 'img/share.png',
