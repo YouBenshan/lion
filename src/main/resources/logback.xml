@@ -15,9 +15,9 @@
     </appender>
     
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    	<file>wechat.log</file>
+    	<file>../logs/wechat.log</file>
 	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-	      <fileNamePattern>wechat.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+	      <fileNamePattern>../logs/wechat.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
 	    </rollingPolicy>
 	    <encoder>   
 	      <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>  
