@@ -91,69 +91,28 @@
 	-webkit-animation-name: close;
 	-webkit-transform: rotate(0deg);
 }
-/*按钮一
-@-webkit-keyframes btn1open{
-	0%{-webkit-transform: translate(0,100px) rotate(0deg);}
-	90%{-webkit-transform: translate(0,-10px) rotate(-540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}
-@-webkit-keyframes btn1close{
-	0%{-webkit-transform: translate(0,-110px) rotate(0deg);}
-	10%{-webkit-transform: translate(0,-100px) rotate(540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}
-*/
+
 .plug-btn1.open {
 	-webkit-transform: translate(0, -100px) rotate(720deg);
 }
 .plug-btn1.close {
 	-webkit-transform: translate(0, 0) rotate(0deg);
 }
-/*按钮二
-@-webkit-keyframes btn2open{
-	0%{-webkit-transform: translate(-47px,81px) rotate(0deg);}
-	90%{-webkit-transform: translate(7px,-7px) rotate(540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}
-@-webkit-keyframes btn2close{
-	0%{-webkit-transform: translate(57px,-91px) rotate(0deg);}
-	10%{-webkit-transform: translate(47px,-81px) rotate(540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}*/
+
 .plug-btn2.open {
 	-webkit-transform: translate(47px, -81px) rotate(720deg);
 }
 .plug-btn2.close {
 	-webkit-transform: translate(0, 0) rotate(0deg);
 }
-/*按钮三
-@-webkit-keyframes btn3open{
-	0%{-webkit-transform: translate(-81px,45px) rotate(0deg);}
-	90%{-webkit-transform: translate(7px,-4px) rotate(540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}
-@-webkit-keyframes btn3close{
-	0%{-webkit-transform: translate(91px,-55px) rotate(0deg);}
-	10%{-webkit-transform: translate(81px,-45px) rotate(540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}*/
+
 .plug-btn3.open {
 	-webkit-transform: translate(81px, -45px) rotate(720deg);
 }
 .plug-btn3.close {
 	-webkit-transform: translate(0, 0) rotate(0deg);
 }
-/*按钮四
-@-webkit-keyframes btn4open{
-	0%{-webkit-transform: translate(-100px,0) rotate(0deg);}
-	90%{-webkit-transform: translate(10px,3px) rotate(-540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}
-@-webkit-keyframes btn4close{
-	0%{-webkit-transform: translate(110px,5px) rotate(0deg);}
-	10%{-webkit-transform: translate(100px,0) rotate(540deg);}
-	100%{-webkit-transform: translate(0, 0) rotate(0deg);}
-	}*/
+
 .plug-btn4.open {
 	-webkit-transform: translate(100px, 0) rotate(720deg);
 }
