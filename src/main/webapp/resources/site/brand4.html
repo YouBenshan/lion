@@ -18,11 +18,12 @@
 </head> 
 
 <body id="news2">
+<div id="mcover" onclick="document.getElementById('mcover').style.display='';"><img src="img/guide.png"></div>
 <div id="ui-header">
 <div class="fixed">
-<a class="ui-title" id="popmenu">细齿洁导航</a>
+
 <a class="ui-btn-left_pre" href="javascript:history.back(-1)"></a>
-<a class="ui-btn-right_home" href="index.html"></a>
+<a class="ui-btn-right_home" href="needtodo.html"></a>
 </div>
 </div>
 <div id="overlay"></div>
@@ -41,7 +42,7 @@
 <div class="top46"></div>
 <div class="page-bizinfo">
 <div class="header" style="position: relative;">
-<h1 id="activity-name">活动试用</h1>
+<!--<h1 id="activity-name">活动试用</h1>-->
 <span id="post-date">2013-09-1</span>
 </div>
 <div class="text" id="content">
@@ -81,7 +82,18 @@
 </div>
 
 <p>
-</div>				
+</div>	
+
+<div id="mess_share">
+<div id="share_1">
+<button class="button2" onclick="document.getElementById('mcover').style.display='block';"><img src="img/icon_msg.png">&nbsp;发送给朋友</button>
+</div>
+<div id="share_2">
+<button class="button2" onclick="document.getElementById('mcover').style.display='block';"><img src="img/icon_timeline.png">&nbsp;分享到朋友圈</button>
+</div>
+<div class="clr"></div>
+</div>
+			
 <div class="page-content" >
 </div>
 </div>      
@@ -95,7 +107,8 @@ location.href= url;
         <div class="plug-phone">
             <div class="plug-menu themeStyle"><span class="close"></span></div>              
                         <div class="themeStyle plug-btn plug-btn1 close"><a  href="brand1.html"><span style="background-image: url(img/plugmenu3.png);" ></span></a></div>              
-                        <div class="themeStyle plug-btn plug-btn2 close"><a  href="http://widget.weibo.com/dialog/follow.php?fuid=2731308807&refer=www.systema.cn&language=zh_cn&type=widget_page&vsrc=app_followbutton&backurl=http%3A%2F%2Fwww.systema.cn%2Findex.html&rnd=1377521033937"><span style="background-image: url(img/plugmenu12.png);" ></span></a></div>                      
+                        <div class="themeStyle plug-btn plug-btn2 close"><a  href="http://widget.weibo.com/dialog/follow.php?fuid=2731308807&refer=www.systema.cn&language=zh_cn&type=widget_page&vsrc=app_followbutton&backurl=http%3A%2F%2Fwww.systema.cn%2Findex.html&rnd=1377521033937"><span style="background-image: url(img/plugmenu12.png);" ></span></a></div> 
+                        <div class="themeStyle plug-btn plug-btn3 close"><a  onclick="document.getElementById('mcover').style.display='block';"><span style="background-image: url(img/plugmenu4.png);" ></span></a></div>						
 <div class="plug-btn plug-btn5 close"></div>
                     </div>
 </div>
@@ -113,7 +126,7 @@ location.href= url;
 <script src="js/plugmenu.js" type="text/javascript"></script>
 <script src="js/audio.min.js" type="text/javascript"></script>
 <script src="js/play.js" type="text/javascript"></script>
-<script src="js/plugback.js" type="text/javascript"></script>
+<!--<script src="js/plugback.js" type="text/javascript"></script>-->
 <script>
       audiojs.events.ready(function() {
         audiojs.createAll();
