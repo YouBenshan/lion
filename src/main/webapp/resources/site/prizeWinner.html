@@ -18,13 +18,13 @@
 	$("#alertclose").click(function () { 
 	$("#windowcenter").slideUp(500);
 	}); 
-	alert("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恭喜以上获奖的同学们！没有中奖的童鞋们也不要灰心，小细之后会有更多的活动与奖品等着你！请获奖的同学们尽快将”姓名/收件地址/联系电话“在微信上回复小细，然后。。。然后就在学校接礼物吧！");;
+	alert("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恭喜以上获奖的同学们！没有中奖的童鞋们也不要灰心，小细之后会有更多的活动与奖品等着你！请获奖的同学们尽快将”姓名/收件地址/联系电话“在微信上回复小细，然后。。。然后就在学校接礼物吧！");
 	}); 
 	
     function alert(title){ 
 	$("#windowcenter").slideToggle("slow"); 
 	$("#txt").html(title); 
-	setTimeout('$("#windowcenter").slideUp(500)',8000);
+	setTimeout('$("#windowcenter").slideUp(500)',12000);
 	} 
 	
 </script>
@@ -367,9 +367,9 @@
 				<!--JS消息提示滑动窗口 -->
 				<div class="window" id="windowcenter">
 					<div id="title" class="wtitle">
-						消息提醒<span class="close" id="alertclose"></span>
+						领奖提醒<span class="close" id="alertclose"></span>
 					</div>
-					<div class="content">
+					<div class="alertContent">
 						<div id="txt"></div>
 					</div>
 				</div>
