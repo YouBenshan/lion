@@ -48,9 +48,9 @@ b{display:inline-block; width:0px; height:100%; vertical-align:middle;}
 .two_column {padding:10px 10px 0px; -webkit-columns:auto 2; -webkit-column-gap:10px; -moz-columns:auto 2; -moz-column-gap:10px; columns:auto 2; column-gap:10px;}
 
 
-.home_title{background:#f3f1ee; padding:5px;line-height:30px; text-align:center; color:#009ece;width:100%px;font-size:14px; font-family:"微软雅黑";}
+.home_title{background:#f3f1ee; padding:8px;line-height:35px; text-align:center; color:#30A4FC;width:100%px;font-size:18px; font-family:"微软雅黑";}
 .info {background:#f3f1ee; padding:10px;}
-.name {color:#009ece; font-size:14px; text-align:center;}
+.name {color:#30A4FC; font-size:14px; text-align:center;}
 .info_edit {color:#454854;}
 .button {margin-top:10px;}
 .button span {width:100px; display:inline-block; line-height:30px; text-align:center; color:#fff;}
@@ -92,7 +92,7 @@ b{display:inline-block; width:0px; height:100%; vertical-align:middle;}
 }
 
 .window .wtitle {
-	background-color: #0066FF;
+	background-color: #30A4FC;
 	line-height: 26px;
 	padding: 5px 5px 5px 10px;
 	color: #ffffff;
@@ -106,7 +106,7 @@ b{display:inline-block; width:0px; height:100%; vertical-align:middle;}
 	/*min-height:100px;*/
 	overflow: auto;
 	padding: 10px;
-	color: #222222;
+	color: #30A4FC;
 	text-shadow: 0 1px 0 #FFFFFF;
 }
 
