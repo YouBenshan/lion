@@ -203,7 +203,7 @@ $(function() {
             data: {
                 wechatId: "o7MB9jpybk-XJZHjQfjeM51i5XpI",
                 userType: "dzp",
-                tid: "3156"
+                tid: "1"
             },
             beforeSend: function() {
                 running = true;//设置开始抽奖
@@ -216,8 +216,8 @@ $(function() {
             },
             success: function(data) {//请求成功后回调函数。这个方法有两个参数：服务器返回数据，返回状态
                 if (data.error == "invalid") {//如果返回数据非法，则不能抽奖
-                    //alert(data.msg);
-					alert("超过抽奖次数");
+                    alert(data.msg);
+					//alert("超过抽奖次数");
                     count = 30;
                     clearInterval(timer);//终止计时器
                     return
