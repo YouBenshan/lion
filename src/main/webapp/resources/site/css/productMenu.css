@@ -9,9 +9,9 @@
         overflow-x: hidden;}
 #cate1 .mainmenu {
 		display: block;
-	    width: 400px;
+	    width: 360px;
         padding: 0px;
-        margin: 60px auto 0px auto;
+        margin: 50px auto 0px auto;
 		box-sizing: content-box;
 		-webkit-box-sizing: content-box;
 		-moz-box-sizing: content-box;
@@ -30,7 +30,7 @@
 
 #cate1 .mainmenu2 {
 		display: block;
-	    width: 400px;
+	    width: 360px;
         padding: 0px;
         margin: 20px auto;
 		box-sizing: content-box;
