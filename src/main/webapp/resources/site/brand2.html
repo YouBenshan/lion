@@ -10,105 +10,64 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta charset="utf-8">
 	<style>
-		#tbrush {background: url(img/product/product_bg.jpg);overflow-x: hidden;}
-		#tbrush .mainmenu {
+	    #all {background: url(img/product/product_bg.jpg);overflow-x: hidden;}
+		#tbrush .mainmenu {				
 				display: block;
-				width: 360px;
-				padding: 0px;
-				margin: 50px auto 0px auto;
-				box-sizing: content-box;
-				-webkit-box-sizing: content-box;
-				-moz-box-sizing: content-box;
-				-ms-box-sizing: content-box;
+				width:320px;
+				height:560px; 
+				position:absolute;
+				overflow:hidden;
 		}
-		#tbrush .mainmenu li  {
+				
+		#mainmenu1 li  {
 			display: block;
 			overflow: hidden;
 			text-decoration:none;
 		}
-		#tbrush .mainmenu li a {
-			display:block;
-			padding:0px;
-			font-size:14px;
-			color: #000000;
-			text-decoration: none;
-			-moz-user-select:none;
-			-webkit-user-select:none;
-			-ms-user-select:none;
-		}
-		#tbrush .mainmenu li .menuimg {
-			overflow:hidden;
-		}
+		
+		li{background: url(img/product/sprite_tbrush.png) no-repeat top left;}
+		
+		.A1{left:0px;top:0px;position:absolute;}
+		.A2{left:108px;top:0px;position:absolute;}
+		.A3{left:156px;top:0px;position:absolute;}
+		.A4{left:270px;top:0px;position:absolute;}
+		.A5{left:0px;top:270px;position:absolute;}
+		.A6{left:108px;top:270px;position:absolute;}
+		.A7{left:188px;top:270px;position:absolute;}
+		.A8{left:270px;top:270px;position:absolute;}
+		
+		.sprite-tbrush_1{ background-position:    0   0; width: 84px; height: 252px; } 
+		.sprite-tbrush_2{ background-position: -104px 0; width: 56px; height: 252px; } 
+		.sprite-tbrush_3{ background-position: -180px 0; width: 84px; height: 252px; } 
+		.sprite-tbrush_4{ background-position: -284px 0; width: 56px; height: 252px; } 
+		.sprite-tbrush_5{ background-position: -360px 0; width: 84px; height: 252px; } 
+		.sprite-tbrush_6{ background-position: -464px 0; width: 56px; height: 252px; } 
+		.sprite-tbrush_7{ background-position: -540px 0; width: 56px; height: 252px; } 
+		.sprite-tbrush_8{ background-position: -616px 0; width: 56px; height: 252px; } 
 	</style>
-	
 </head>
 
-<body id="tbrush">
+<body id="all">
+<div id="tbrush">
 <ul class="mainmenu" id="mainmenu1">
-	<li style="float:left; width:100px">
-		<a href="tbrush_yybh.html">
-			<div class="menuimg"><img src="img/product/tbrush_1.png"  style="height: 240px; width:80px;"></div>		
-		</a>	
-	</li>
-
-	<li style="float:left;width:60px">
-	<a href="tbrush_km.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_2.png" style="height: 240px; width:54px;"></div>
-		</div>
-	</a>	
-	</li>
-
-	<li style="float:left;width:110px">
-	<a href="tbrush_ly.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_3.png"  style="height: 240px; width:80px;"></div>
-		</div>
-	</a>	
-	</li>
-
-	<li style="float:left;width:90px">
-	<a href="tbrush_jq.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_4.png"  style="height: 240px; width:54px;"></div>
-		</div>
-	</a>	
-	</li>
-	<div style="margin-top:20px;width:360px;float:left;" ></div>
-
-	<li style="width:100px;float:left;">
-	<a href="tbrush_hll.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_5.png"  style="height: 240px; width:80px;"></div>
-		</div>
-	</a>	
-	</li>
-
-	<li style="width:90px;float:left;">
-	<a href="tbrush_bz.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_6.png" style="height: 240px; width:54px;"></div>
-		</div>
-	</a>	
-	</li>
-
-	<li style="width:80px;float:left;">
-	<a href="tbrush_ys.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_7.png"  style="height: 240px; width:54px;"></div>
-		</div>
-	</a>	
-	</li>
-
-	<li style="width:20%;float:left;">
-	<a href="tbrush_tlhy.html">
-		<div class="menumesg">
-			<div class="menuimg"><img src="img/product/tbrush_8.png"  style="height: 240px; width:54px;"></div>
-		</div>
-	</a>	
-	</li>
+<script>
+	var clientWidth=document.body.clientWidth;
+	if(clientWidth > 320)
+	{
+		var leftWidth = (clientWidth - 320)/2;
+		document.getElementById("mainmenu1").style.cssText = " left:"+leftWidth+"px";
+	}
+</script>
+<a href="tbrush_yybh.html"><li class="A1 sprite-tbrush_1"></li></a>	
+<a href="tbrush_km.html"><li class="A2 sprite-tbrush_2"></li></a>
+<a href="tbrush_ly.html"><li class="A3 sprite-tbrush_3"></li></a>	
+<a href="tbrush_jq.html"><li class="A4 sprite-tbrush_4"></li></a>	
+<a href="tbrush_hll.html"><li class="A5 sprite-tbrush_5"></li></a>
+<a href="tbrush_bz.html"><li class="A6 sprite-tbrush_6"></li></a>		
+<a href="tbrush_ys.html"><li class="A7 sprite-tbrush_7"></li></a>	
+<a href="tbrush_tlhy.html"><li class="A8 sprite-tbrush_8"></li></a>
 </ul>
-
+</div>
 <div style="display:none"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=27038520" charset="UTF-8"></script></div>
 
 <!--QA for  s-66915.gotocdn.com 
@@ -116,3 +75,4 @@
 -->
 </body>
 </html>
+
