@@ -404,7 +404,7 @@ right:0;
 	-moz-border-radius:5px;
 	border-radius:5px;
 	background-color:#FFFFFF;
-	margin:10px 10px 10px 0px;
+	margin:10px 0px 10px 0px;
 	padding:15px;
 	text-align:center;
 	cursor: pointer;
@@ -517,11 +517,11 @@ color: #fff;
 .care_box .block4 .block_cont .no4{background-position:right -122px;}
 
 /*—¿À¢≤˙∆∑œÍœ∏ΩÈ…‹*/				 
-.toothbrush {padding-top:6px;margin-bottom:0px;display:block;position:relative;overflow:hidden;zoom:1;width:98%;
+.toothbrush {padding-top:6px;margin-bottom:0px;display:block;position:relative;overflow:hidden;zoom:1;width:100%;
  -moz-border-radius: 10px 10px 0 0 ;
  border-radius: 10px 10px 0 0 ;
  -webkit-border-radius: 10px 10px 0 0 ;}
-.car_bg{padding-top:6px;margin-bottom:0px;display:block;position:relative;overflow:hidden;zoom:1;width:98%;
+.car_bg{padding-top:6px;margin-bottom:0px;display:block;position:relative;overflow:hidden;zoom:1;width:100%;
 	                                      -moz-border-radius: 0 0 10px 10px;
 										  border-radius: 0 0 10px 10px;
 										  -webkit-border-radius:0 0 10px 10px;}								  
