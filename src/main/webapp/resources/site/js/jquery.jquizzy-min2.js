@@ -4,7 +4,7 @@
         var defaults = {
             questions: null,
             twitterStatus: 'I scored {score}% on this awesome! Check it out!',
-            startText: '点击开始测试牙龈',
+            startText: '开始',
             endText: '牙龈健康报告',
             splashImage: 'img/start.png',
             twitterImage: 'img/share.png',
@@ -26,7 +26,7 @@
         }
         var superContainer = $(this),
         answers = [],
-        introFob = '<div class="intro-container slide-container"><div class="question-number">' + config.startText + '</div><a class="nav-start" href="#"><img src="' + config.splashImage + '" /></a></div>',
+        introFob = '<div class="intro-container slide-container"><a class="nav-start" href="#"><img src="' + config.splashImage + '" /></a><div ><a class="submit" href="javascript:void(0)" style="color: #FFFFFF;">开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;始</a></div></div>',
         exitFob = '<div class="results-container slide-container"><div class="question-number">' + config.endText + '</div><div class="result-keeper"></div></div><div class="notice">请选择一个选项！</div><div class="progress-keeper" ><div class="progress"></div></div>',
         contentFob = '';
         superContainer.addClass('main-quiz-holder');
@@ -95,6 +95,14 @@
             }
         });
         superContainer.find('.nav-start').click(function() {
+            $(this).parents('.slide-container').fadeOut(500,
+            function() {
+                $(this).next().fadeIn(500);
+                progressKeeper.fadeIn(500)
+            });
+            return false
+        });
+		superContainer.find('.submit').click(function() {
             $(this).parents('.slide-container').fadeOut(500,
             function() {
                 $(this).next().fadeIn(500);
