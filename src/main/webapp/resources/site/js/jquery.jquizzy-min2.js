@@ -42,7 +42,7 @@
             if (questionsIteratorIndex < config.questions.length - 1) {
                 contentFob += '<div class="next"><a class="nav-next" href="#">下一题</a></div>'
             } else {
-                contentFob += '<div class="next final"><a class="nav-show-result" href="#">点击查看结果</a></div>'
+                contentFob += '<div class="next final"><a class="nav-show-result" href="#" style="color: #FFFFFF;">点击查看结果</a></div>'
             }
             contentFob += '</div></div>';
             answers.push(config.questions[questionsIteratorIndex].correctAnswer)

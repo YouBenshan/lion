@@ -15,10 +15,10 @@
 	-o-box-shadow:0 1px 5px #D9D9D9,inset 0 10px 20px #F1F1F1;
 	-webkit-box-shadow:0 1px 5px #D9D9D9,inset 0 10px 20px #F1F1F1;
 	-moz-box-shadow:0 1px 5px #D9D9D9,inset 0 10px 20px #F1F1F1;
-	border-radius: 20px 4px 20px 4px;	 
+	border-radius: 8px 8px 8px 8px;	 
 	/*width: 98%*/;
 	min-width: 280px;
-	min-height:450px;
+	min-height:650px;
 }
 
 /* Low Orbit Ion Cannon! */
@@ -128,10 +128,10 @@
 
 .main-quiz-holder .slide-container .next  {
   background: #0066FF;
-  box-shadow: 0 1px 5px #3caa00, inset 0 10px 20px #00FFCC;
-   -o-box-shadow: 0 1px 5px #3caa00, inset 0 10px 20px #00FFCC;
-   -webkit-box-shadow: 0 1px 5px #3caa00, inset 0 10px 20px #00FFCC;
-   -moz-box-shadow: 0 1px 5px #3caa00, inset 0 10px 20px #00FFCC;
+  box-shadow: 0 1px 5px #0000FF, inset 0 10px 20px #00FFCC;
+   -o-box-shadow: 0 1px 5px #0000FF, inset 0 10px 20px #00FFCC;
+   -webkit-box-shadow: 0 1px 5px #0000FF, inset 0 10px 20px #00FFCC;
+   -moz-box-shadow: 0 1px 5px #0000FF, inset 0 10px 20px #00FFCC;
 }
 
 
