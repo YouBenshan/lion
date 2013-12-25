@@ -27,22 +27,22 @@
         var superContainer = $(this),
         answers = [],
         introFob = '<div class="intro-container slide-container"><a class="nav-start" href="#"><img src="' + config.splashImage + '" /></a><div ><a class="submit" href="javascript:void(0)" style="color: #FFFFFF;">开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;始</a></div></div>',
-        exitFob = '<div class="results-container slide-container"><div class="question-number">' + config.endText + '</div><div class="result-keeper"></div></div><div class="notice">请选择一个选项！</div><div class="progress-keeper" ><div class="progress"></div></div>',
+        exitFob = '<div class="results-container slide-container"><div class="question-number" style="color: #FFFFFF;">' + config.endText + '</div><div class="result-keeper"></div></div><div class="notice">请选择一个选项！</div><div class="progress-keeper" style="display:none;"><div class="progress" style="display:none;"></div></div>',
         contentFob = '';
         superContainer.addClass('main-quiz-holder');
         for (questionsIteratorIndex = 0; questionsIteratorIndex < config.questions.length; questionsIteratorIndex++) {
-            contentFob += '<div class="slide-container"><div class="question-number">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div><div class="question">' + config.questions[questionsIteratorIndex].question + '</div><ul class="answers">';
+            contentFob += '<div class="slide-container"><div class="question-number" style="color: #FFFFFF;">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div><div class="question">' + config.questions[questionsIteratorIndex].question + '<br><div>(请点击下方按钮“点击查看结果按钮”查询结果)</div></div><ul class="answers">';
             for (answersIteratorIndex = 0; answersIteratorIndex < config.questions[questionsIteratorIndex].answers.length; answersIteratorIndex++) {
                 contentFob += '<li>' + config.questions[questionsIteratorIndex].answers[answersIteratorIndex] + '</li>'
             }
-            contentFob += '</ul><div class="nav-container">';
+            contentFob += '</ul><div class="nav-container" style="margin: 8px auto auto auto;">';
             if (questionsIteratorIndex !== 0) {
                 contentFob += '<div class="prev"><a class="nav-previous" href="#">上一题</a></div>'
             }
             if (questionsIteratorIndex < config.questions.length - 1) {
                 contentFob += '<div class="next"><a class="nav-next" href="#">下一题</a></div>'
             } else {
-                contentFob += '<div class="next final"><a class="nav-show-result" href="#" style="color: #FFFFFF;">点击查看结果</a></div>'
+                contentFob += '<div class="next final" style="width:50%;height:30px;margin: 5px auto auto auto;"><div style="width:65%;height:30px;margin: 5px auto auto auto;font-size:16px;padding:6px;"><a class="nav-show-result" href="#" style="color:#FFFFFF;">&nbsp;&nbsp;点击查看结果</a></div></div>'
             }
             contentFob += '</div></div>';
             answers.push(config.questions[questionsIteratorIndex].correctAnswer)
@@ -82,16 +82,17 @@
             else if (userAnswers==10) return config.resultComments.advice4;
             else if (userAnswers==11||userAnswers==12) return config.resultComments.advice5;
         }
+		
         progressKeeper.hide();
         notice.hide();
         slidesList.hide().first().fadeIn(500);
         superContainer.find('li').click(function() {
             var thisLi = $(this);
             if (thisLi.hasClass('selected')) {
-                thisLi.removeClass('selected')
+                thisLi.removeClass('selected');
             } else {
                 thisLi.parents('.answers').children('li').removeClass('selected');
-                thisLi.addClass('selected')
+                thisLi.addClass('selected');
             }
         });
         superContainer.find('.nav-start').click(function() {
@@ -102,6 +103,7 @@
             });
             return false
         });
+		
 		superContainer.find('.submit').click(function() {
             $(this).parents('.slide-container').fadeOut(500,
             function() {
@@ -137,7 +139,8 @@
             },
             500);
             return false
-        });
+        })
+		
         superContainer.find('.final').click(function() {
             if ($(this).parents('.slide-container').find('li.selected').length === 0) {
                 notice.fadeIn(300);
@@ -149,6 +152,7 @@
             progressKeeper.hide();      
             resultSet = '<h2 class="qTitle">' + judgeSkills(userAnswers) + '<div class="jquizzy-clear"></div>';
             superContainer.find('.result-keeper').html(resultSet).show(500);
+			scroll(0,0);
             return false
         })
     }
