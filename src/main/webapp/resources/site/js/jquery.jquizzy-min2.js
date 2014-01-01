@@ -31,7 +31,7 @@
         contentFob = '';
         superContainer.addClass('main-quiz-holder');
         for (questionsIteratorIndex = 0; questionsIteratorIndex < config.questions.length; questionsIteratorIndex++) {
-            contentFob += '<div class="slide-container"><div class="question-number" style="color: #FFFFFF;">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div><div class="question">' + config.questions[questionsIteratorIndex].question + '<br><div>(请点击下方按钮“点击查看结果按钮”查询结果)</div></div><ul class="answers">';
+            contentFob += '<div class="slide-container"><div class="question-number" style="color: #FFFFFF;display: none;">' + (questionsIteratorIndex + 1) + '/' + config.questions.length + '</div><div class="question">' + config.questions[questionsIteratorIndex].question + '<br><div>(请点击下方按钮“点击查看结果按钮”查询结果)</div></div><ul class="answers">';
             for (answersIteratorIndex = 0; answersIteratorIndex < config.questions[questionsIteratorIndex].answers.length; answersIteratorIndex++) {
                 contentFob += '<li>' + config.questions[questionsIteratorIndex].answers[answersIteratorIndex] + '</li>'
             }
